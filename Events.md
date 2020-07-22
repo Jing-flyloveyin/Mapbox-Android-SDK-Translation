@@ -1,0 +1,368 @@
+---
+title: "Events"
+description: "Documentation about map events within the Mapbox Maps SDK for Android. Read about map clicking, flinging, moving, and other Mapbox map events."
+prependJs:
+  - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
+contentType: guide
+language:
+- Java
+- Kotlin
+---
+
+The Maps SDK provides various ways to listen to map events. The majority of listeners that the SDK offers are listed below. But, you'll occasionally find other listeners specific to their corresponding API inside other overview documents.
+
+## Map click & long click events
+
+Click (tap) events can be set up through the `MapboxMap` object and invoke a callback each time that the event occurs. In both cases, the callback provides a `LatLng` of where the user click occurred on the map. To add an `onClick` listener to your map, insert the following snippet inside your application's code:
+
+{{
+<AndroidActivityToggle
+  id="click-events"
+
+java={`
+
+mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
+  @Override
+  public boolean onMapClick(@NonNull LatLng point) {
+
+	Toast.makeText(MainActivity.this, String.format("User clicked at: %s", point.toString()), Toast.LENGTH_LONG).show();
+	
+	return true;
+  }
+});
+`}
+
+kotlin={`
+mapboxMap.addOnMapClickListener { point ->
+	Toast.makeText(this, String.format("User clicked at: %s", point.toString()), Toast.LENGTH_LONG).show()
+	
+	true
+}
+`}
+
+/>
+}}
+
+### Convert from screen pixel
+
+In occasions when you need to know the corresponding location on the screen where the user gesture occurred, you can convert the `LatLng` point to screen pixels. The MapboxMap object provides the `Projection` from the map which allows you to convert between `LatLng` coordinates to screen pixel using `mapboxMap.getProjection().toScreenLocation(<LatLng>);`. The reverse is available when you have a screen location in pixels and need to convert it to a corresponding `LatLng` object.
+
+A common use case for converting the values between `LatLng` and pixel coordinates is when you'd like to query a map layer or source to, for example, determine whether the users clicked on a POI. You can read more on how to do this in the [Query map features](/android/maps/overview/query/) documentation.
+
+## Camera change events
+
+The map's camera is the view looking down on the maps flat plane. In almost all cases, you'll be interacting with the camera to adjust the map's starting zoom and target position. The user also can manipulate the camera by performing gestures on the map such as pinch-to-zoom, two-finger move to tilt, and single finger moves to adjust the position.
+
+The Map SDK provides a handful of camera change listeners which can tell you of any or specific camera movements. The SDK gives different camera listeners to determine if the camera movement was caused by a user gesture, built-in API animations, or a developer-controlled movement. The snippet below shows the various camera listeners available:
+
+{{
+<AndroidActivityToggle
+  id="camera-change-events"
+
+java={`
+
+mapboxMap.addOnCameraMoveStartedListener(new MapboxMap.OnCameraMoveStartedListener() {
+
+  private final String[] REASONS = {"REASON_API_GESTURE", "REASON_DEVELOPER_ANIMATION", "REASON_API_ANIMATION"};
+
+  @Override
+  public void onCameraMoveStarted(int reason) {
+  	Toast.makeText(SimpleMapViewActivity.this, String.format("OnCameraMoveStarted: %s", REASONS[reason - 1]), Toast.LENGTH_LONG).show();
+  }
+});
+
+mapboxMap.addOnCameraMoveListener(new MapboxMap.OnCameraMoveListener() {
+  @Override
+  public void onCameraMove() {
+    Toast.makeText(MainActivity.this, "onCameraMove", Toast.LENGTH_LONG).show();
+  }
+});
+
+mapboxMap.addOnCameraMoveCancelListener(new MapboxMap.OnCameraMoveCanceledListener() {
+  @Override
+  public void onCameraMoveCanceled() {
+    Toast.makeText(MainActivity.this, "onCameraMoveCanceled", Toast.LENGTH_LONG).show();
+  }
+});
+
+mapboxMap.addOnCameraIdleListener(new MapboxMap.OnCameraIdleListener() {
+  @Override
+  public void onCameraIdle() {
+    Toast.makeText(MainActivity.this, "onCameraIdle", Toast.LENGTH_LONG).show();
+  }
+});
+`}
+
+kotlin={`
+	mapboxMap.addOnCameraMoveStartedListener(object : 		MapboxMap.OnCameraMoveStartedListener {
+	
+		private val REASONS = arrayOf("REASON_API_GESTURE", "REASON_DEVELOPER_ANIMATION", "REASON_API_ANIMATION")
+		
+		override fun onCameraMoveStarted(reason: Int) {
+		    Toast.makeText(this@SimpleMapViewActivity, String.format("OnCameraMoveStarted: %s", REASONS[reason - 1]), Toast.LENGTH_LONG).show()
+		}
+	})
+	
+	mapboxMap.addOnCameraMoveListener {
+		Toast.makeText(this@SimpleMapViewActivity, "onCameraMove", Toast.LENGTH_LONG).show()
+	}
+	
+	mapboxMap.addOnCameraMoveCancelListener {
+		Toast.makeText(this@SimpleMapViewActivity, "onCameraMoveCanceled", Toast.LENGTH_LONG).show()
+	}
+	
+	mapboxMap.addOnCameraIdleListener {
+		Toast.makeText(this@SimpleMapViewActivity, "onCameraIdle", Toast.LENGTH_LONG).show()
+	}
+`}  
+
+/>
+}}
+
+
+
+## On fling & on move events
+
+Besides the camera change listeners, the `MapboxMap` object allows you to listen into when the user moves or flings the map. A move event occurs when the user drags a single finger across the screen causing the camera position to change. A similar action from the user will cause the `onFling` callback to be invoked, but the user performs the gesture with more momentum. Only one of these events will be fired once when the user performs the particular gesture.
+
+{{
+<AndroidActivityToggle
+  id="on-fling-and-move-events"
+
+java={`
+
+mapboxMap.addOnMoveListener(new MapboxMap.OnMoveListener() {
+  @Override
+  public void onMoveBegin(MoveGestureDetector detector) {
+    
+    
+  }
+  @Override
+  public void onMove(MoveGestureDetector detector) {
+    
+    
+  }
+  @Override
+  public void onMoveEnd(MoveGestureDetector detector) {
+    
+    
+  }
+});
+
+
+mapboxMap.addOnFlingListener(new MapboxMap.OnFlingListener() {
+  @Override
+  public void onFling() {
+    Toast.makeText(MainActivity.this, "onFling", Toast.LENGTH_LONG).show();
+  }
+});
+`}
+
+kotlin={`
+
+mapboxMap.addOnMoveListener(object : MapboxMap.OnMoveListener {
+  override fun onMoveBegin(detector: MoveGestureDetector) {
+    
+    
+  }
+  override fun onMove(detector: MoveGestureDetector) {
+    
+    
+  }
+  override fun onMoveEnd(detector: MoveGestureDetector) {
+    
+    
+  }
+})
+
+mapboxMap.addOnFlingListener {
+
+Toast.makeText(this@MainActivity, "onFling", Toast.LENGTH_LONG).show()
+
+}
+`}
+
+/>
+}}
+
+
+## Marker and info window events
+
+The Maps SDK provides a handy listener for capturing when a user taps on a marker. By default, all markers come with an `onMarkerClick` event listener for displaying and hiding info windows. You can override this default event listener and set your own with the `setOnMarkerClickListener` method.
+
+To display a toast message with the clicked marker’s title, listen for a click event with `setOnMarkerClickListener` and finally call Toast.makeText(). To prevent displaying a toast message and an info window at the same time, return true at the end:
+
+{{
+<AndroidActivityToggle
+  id="marker-events"
+
+java={`
+
+mapboxMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
+  @Override
+  public boolean onMarkerClick(@NonNull Marker marker) {
+    Toast.makeText(MainActivity.this, marker.getTitle(), Toast.LENGTH_LONG).show();
+    return true;
+  }
+});
+`}
+
+kotlin={`
+
+mapboxMap.setOnMarkerClickListener { marker ->
+
+	Toast.makeText(MainActivity.this, marker.getTitle(), Toast.LENGTH_LONG).show();
+
+}
+`}
+
+/>
+}}
+
+
+In a similar case, the info window offers a handful of listeners for being notified when an info windows clicked, long clicked, or when a user closes the window.
+
+{{
+<AndroidActivityToggle
+  id="info-window-events"
+
+java={`
+
+mapboxMap.setOnInfoWindowLongClickListener(new MapboxMap.OnInfoWindowLongClickListener() {
+  @Override
+  public void onInfoWindowLongClick(@NonNull Marker marker) {
+    
+  }
+});
+
+mapboxMap.setOnInfoWindowCloseListener(new MapboxMap.OnInfoWindowCloseListener() {
+	@Override
+	public void onInfoWindowClose(@NonNull Marker marker) {
+	
+	}
+});
+
+mapboxMap.setOnInfoWindowClickListener(new MapboxMap.OnInfoWindowClickListener() {
+  @Override
+  public boolean onInfoWindowClick(@NonNull Marker marker) {
+    return false;
+  }
+});
+
+`}
+
+kotlin={`
+mapboxMap.onInfoWindowLongClickListener = MapboxMap.OnInfoWindowLongClickListener {
+                    
+}
+                                
+mapboxMap.onInfoWindowCloseListener = MapboxMap.OnInfoWindowCloseListener {
+    
+}
+
+mapboxMap.onInfoWindowClickListener = MapboxMap.OnInfoWindowClickListener {
+
+    false
+}
+`}
+
+/>
+}}
+
+
+## Map change events
+
+The `MapView` goes through a series of lifecycle events while building and changing the map. The Maps SDK provides many different change listener interfaces to tell you when a specific map event has occurred.
+
+Instead of adding a listener to the `MapboxMap` object, each listener is added to a `MapView` object. For example `OnDidFinishRenderingMapListener` and `addOnDidFinishLoadingMapListener`.
+
+{{
+<AndroidActivityToggle
+  id="window-change-events"
+
+java={`
+mapView.addOnDidFinishRenderingMapListener(new MapView.OnDidFinishRenderingMapListener() {
+	@Override
+	public void onDidFinishRenderingMap(boolean fully) {
+
+	// The map has finished rendering
+
+
+​	    
+	}
+});
+`}
+
+kotlin={`
+mapView.addOnDidFinishRenderingMapListener {
+
+	// The map has finished rendering
+
+}
+`}
+
+/>
+}}
+
+You can also implement the specific change event interface and override its method. The interface callback is then invoked when a new map change occurs.
+
+The listeners listed below are in the order in which the events occur during a `MapView`'s life.
+
+| Map change event listener               | Description                                                  |
+| --------------------------------------- | ------------------------------------------------------------ |
+| `OnCameraWillChangeListener`            | This event is triggered whenever the displayed map region is about to change without an animation. |
+| `OnCameraDidChangeListener`             | This event is triggered whenever the displayed map region finished changing without an animation. |
+| `OnWillStartLoadingMapListener`         | This event is triggered when the map is about to start loading a new map style. |
+| `OnWillStartRenderingMapListener`       | This event is triggered when the map will start rendering the map. |
+| `addOnWillStartRenderingFrameListener`  | This event is triggered when the map will start rendering a frame. |
+| `OnDidFinishRenderingFrameListener`     | This event is triggered when the map finished rendering a frame. |
+| `OnCameraWillChangeListener`            | This event is triggered whenever the displayed map region is about to change without an animation. |
+| `OnCameraDidChangeListener`             | This event is triggered whenever the displayed map region finished changing without an animation. |
+| `OnDidFinishLoadingStyleListener`       | Triggered when a style has finished loading.                 |
+| `OnDidFinishRenderingFrameListener`     | This event is triggered when the map finished rendering a frame. |
+| `OnSourceChangedListener`               | Triggered when a source changes.                             |
+| `addOnWillStartRenderingFrameListener ` | This event is triggered when the map will start rendering a frame. |
+| `OnDidFinishRenderingFrameListener `    | This event is triggered when the map finished rendering a frame. |
+| `OnDidFinishLoadingMapListener`         | This is triggered when the map has successfully loaded a new map style. |
+| `addOnWillStartRenderingFrameListener`  | This event is triggered when the map will start rendering a frame. |
+| `OnDidFinishRenderingMapListener`       | This event is triggered when the map is fully rendered.      |
+
+
+Additional change events that are not part of the standard `MapView` lifecycle:
+
+| Map change event listener     | Description                                                  |
+| ----------------------------- | ------------------------------------------------------------ |
+| `OnCameraIsChangingListener`  | This event is triggered whenever the displayed map region is changing. |
+| `OnCameraDidChangeListener`   | This event is triggered whenever the displayed map region finished changing with an animation. |
+| `OnDidFailLoadingMapListener` | This event is triggered when the map has failed to load a new map style. |
+
+Any of the map change event interfaces can be removed from the `MapView` object as well.
+
+`addOnDidFinishLoadingStyleListener()` is useful if you're using runtime styling to change the Mapbox map style in real time. Here's how you'd use the constant:
+
+{{
+<AndroidActivityToggle
+  id="window-click-listener-events"
+
+java={`
+mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
+	@Override
+	public void onDidFinishLoadingStyle() {
+	
+	// The map is now ready for other changes
+	
+	}
+});
+`}
+
+kotlin={`
+mapView.addOnDidFinishLoadingStyleListener {
+
+	// The map is now ready for other changes
+
+
+}
+`}
+
+/>
+}}
