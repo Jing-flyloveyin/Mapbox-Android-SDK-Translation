@@ -1,6 +1,6 @@
 ---
 title: "Annotations"
-description: "Looking to annotate a map with the Mapbox Maps SDK for Android. Read this documentation to learn about markers, info windows, lines, polygons, plus more."
+description: "希望使用适用于 Android 的 Mapbox Maps SDK 呈现地图。阅读本文档以了解标记，信息窗口，线，多边形等更多信息。"
 prependJs:
   - "import RelatedPage from '@mapbox/dr-ui/related-page';"
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
