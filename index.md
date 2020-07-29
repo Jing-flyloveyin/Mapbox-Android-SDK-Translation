@@ -17,7 +17,7 @@ language:
 
 
 
-The Mapbox Maps SDK for Android is a toolset for displaying maps inside of your Android application.
+The Mapbox Maps SDK for Android是一个开源地图工具集，用于在您的 Android 应用程序内显示地图。
 
 {{
   <a href='https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' className="fr-mm block wmax180 mx-auto pl24">
@@ -25,40 +25,40 @@ The Mapbox Maps SDK for Android is a toolset for displaying maps inside of your 
   </a>
 }}
 
-[Mapbox's demo app on the Google Play Store](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo&hl=en) includes many examples of how to use the Mapbox Maps SDK for Android. The demo app and [examples page](https://docs.mapbox.com/android/maps/examples/) will illustrate the power of the Mapbox Maps SDK for Android.
+在[Google Play Store中的Mapbox演示应用](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo&hl=en) 包含许多关于如何使用 Mapbox Maps SDK for Android 的示例。 演示应用和 [示例页面](https://docs.mapbox.com/android/maps/examples/) 将会为您展示出Mapbox Maps SDK的强大功能。
 
-{{<Note title="Upgrade to the most recent version">}}
-For information about migrating from older versions of the Mapbox Maps SDK for Android to newer ones, see:
+{{<Note title="迁移到最新版本">}}
+关于从旧版本迁移到新版本的Mapbox Maps SDK for Android的信息，请参阅：
 
-- **v8.x.x to v9.x.x**: Applications implementing this version of the Maps SDK must support [AndroidX](https://developer.android.com/jetpack/androidx).
-- **v7.x.x to v8.x.x**: This version change improved the method for counting monthly active users. No migration guide is required, but you can read more about these changes in the [changelog](https://github.com/mapbox/mapbox-gl-native/releases/tag/android-v8.0.0) and the [Pricing by products](https://docs.mapbox.com/help/account/pricing/#maps-sdk-for-ios-and-android) guide.
-- [**v6.x.x to v7.x.x**](https://github.com/mapbox/mapbox-gl-native/wiki/Android-6.x-to-7.x-migration-guide)
-- [**v5.x.x to v6.x.x**](https://github.com/mapbox/mapbox-gl-native/wiki/Android-5.x-to-6.x-migration-guide)
-- [**v4.x.x to v5.x.x**](https://github.com/mapbox/mapbox-gl-native/wiki/Android-4.x-to-5.x-migration-guide)
+- **v8.x.x 至 v9.x.x**: 要在应用中通过此版本Maps SDK实现地图则应用必须支持[AndroidX](https://developer.android.com/jetpack/androidx).
+- **v7.x.x 至 v8.x.x**: 此版本改进了月度活跃用户的计算方式。无需迁移指南，但您仍可以在 [更新日志](https://github.com/mapbox/mapbox-gl-native/releases/tag/android-v8.0.0) 和 [按产品定价](https://docs.mapbox.com/help/account/pricing/#maps-sdk-for-ios-and-android) 中查看更多信息。
+- [**v6.x.x 至 v7.x.x**](https://github.com/mapbox/mapbox-gl-native/wiki/Android-6.x-to-7.x-migration-guide)
+- [**v5.x.x 至 v6.x.x**](https://github.com/mapbox/mapbox-gl-native/wiki/Android-5.x-to-6.x-migration-guide)
+- [**v4.x.x 至 v5.x.x**](https://github.com/mapbox/mapbox-gl-native/wiki/Android-4.x-to-5.x-migration-guide)
 {{</Note>}}
 
-## Install the Maps SDK
+## 安装Maps SDK
 
-Before starting to develop your application with the Maps SDK, you'll need to configure your credentials and add the SDK as a dependency. This document describes the steps to install the stable version of the Maps SDK, but you can also use the nightly build (i.e. SNAPSHOT) or the beta version, if one is available. Find more information about how to do this inside the project’s [GitHub repository](https://github.com/mapbox/mapbox-gl-native-android/blob/master/README.md).
+在您开始使用Maps SDK开发应用程序前，您需要配置凭据并将此SDK添加为项目依赖项。 此文档描述的是安装稳定版本SDK的步骤， 但您也可以使用每日构建（Nightly Build，例如SNAPSHOT）或者测试（Beta）版本（如果可用）。 关于如何操作的更多信息，请参阅项目的 [GitHub 代码仓库](https://github.com/mapbox/mapbox-gl-native-android/blob/master/README.md)。
 
-If your application is close to or exceeds the 65k method count limit, you can mitigate this problem by enabling ProGuard inside your application. ProGuard directives are included in the Android dependencies to preserve the required classes. You can also shrink the file APK file size by making use of APK splitting.
+如果您的应用程序接近或超过 65k 方法数量限制，可以通过在应用程序内启用 ProGuard 来缓解此问题。ProGuard 指令包含在 Android 依赖项中，用以保留必需类。您还可以通过使用 APK 拆分来减小 APK 文件大小。
 
-### Configure credentials
+### 配置凭据
 
-Before installing the Mapbox Maps SDK for Android, you will need to gather the appropriate credentials. The Maps SDK requires two pieces of sensitive information from your Mapbox account. If you don't have a Mapbox account: [sign up](https://account.mapbox.com/auth/signup/) and navigate to your [Account page](https://account.mapbox.com/). You'll need:
+在安装Mapbox Maps SDK for Android之前，您需要准备好适当的凭据。Maps SDK要求您的Mapbox账户提供两项敏感信息。如果您还没有Maxpbox账户，请：[注册](https://account.mapbox.com/auth/signup/) 并转到您的[“账户”页面](https://account.mapbox.com/)。 您需要:
 
-- **A public access token**: From your account's [tokens page](https://account.mapbox.com/access-tokens/), you can either copy your _default public token_ or click the **Create a token** button to create a new public token.
-- **A secret access token with the `Downloads:Read` scope**. If you plan to install the Maps SDK [via direct download](#add-the-dependency), you do not need to configure a secret token and can skip this step.
-   1. From your account's [tokens page](https://account.mapbox.com/access-tokens/), click the **Create a token** button.
-   2. From the token creation page, give your token a name and make sure the box next to the `Downloads:Read` scope is checked.
-   3. Click the **Create token** button at the bottom of the page to create your token.
-   4. The token you've created is a _secret token_, which means you will only have one opportunity to copy it somewhere secure.
+- **一个公开访问口令（Public access token）**: 在您账户的[“口令”（Tokens）页面](https://account.mapbox.com/access-tokens/)，您可以复制您的 _默认公开口令（default public token）_ or 点击**创建一个口令（Create a token）** 按钮来新建一个公开访问口令。
+- **一个包含 `Downloads:Read` 域的私密访问口令（secret access token）**。如果您计划 [通过直接下载的方式](#add-the-dependency)来安装Maps SDK，则无需进行此项配置，可以直接跳过此步骤。
+   1. 在您账户的[“口令”（Tokens）页面](https://account.mapbox.com/access-tokens/)，点击 **创建一个口令（Create a token）** 按钮。
+   2. 在创建口令的页面上，为此口令填写一个名字并确保 `Downloads:Read` 旁的复选框被选中。
+   3. 点击页面底部的 **创建口令（Create token）** 按钮来完成口令的创建。
+   4. 现在您已经完成了一个 _私密访问口令（secret token）_ 的创建, 这意味着您只有一次机会复制并将其保存在安全的位置。
 
-You should not expose these access tokens in publicly-accessible source code where unauthorized users might find them. Instead, you should store them somewhere safe on your computer and take advantage of [Gradle properties](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties) to make sure they're only added when your app is compiled. Once this configuration step has been completed, you will be able to reference your credentials in other parts of your app.
+您不应将以上创建好的口令放在可以被公开访问到的源代码中，因为这样可能会使口令被未经允许的用户访问得到。相反，您应该将其存放在你电脑上的安全位置并利用[Gradle properties](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties) 的优势来保证它们只会在你的应用编译生成时被加入应用。一旦配置步骤完成，您就可以在应用的其它部分访问您的凭据。
 
 #### Configure your secret token
 
-{{ <Note>If you plan to install the Maps SDK via direct download, you do not need to configure a secret token and can skip to the next step.</Note>}}
+{{ <Note title="请注意">如果您计划通话直接下载的方式安装Maps SDK则无需配置私密口令并可以跳过此步骤。</Note>}}
 
 To avoid exposing your secret token, add it as an environment variable:
 
