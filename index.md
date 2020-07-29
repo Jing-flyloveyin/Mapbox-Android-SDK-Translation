@@ -47,41 +47,41 @@ The Mapbox Maps SDK for Android是一个开源地图工具集，用于在您的 
 
 在安装Mapbox Maps SDK for Android之前，您需要准备好适当的凭据。Maps SDK要求您的Mapbox账户提供两项敏感信息。如果您还没有Maxpbox账户，请：[注册](https://account.mapbox.com/auth/signup/) 并转到您的[“账户”页面](https://account.mapbox.com/)。 您需要:
 
-- **一个公开访问口令（Public access token）**: 在您账户的[“口令”（Tokens）页面](https://account.mapbox.com/access-tokens/)，您可以复制您的 _默认公开口令（default public token）_ or 点击**创建一个口令（Create a token）** 按钮来新建一个公开访问口令。
-- **一个包含 `Downloads:Read` 域的私密访问口令（secret access token）**。如果您计划 [通过直接下载的方式](#add-the-dependency)来安装Maps SDK，则无需进行此项配置，可以直接跳过此步骤。
-   1. 在您账户的[“口令”（Tokens）页面](https://account.mapbox.com/access-tokens/)，点击 **创建一个口令（Create a token）** 按钮。
+- **一个公开访问令牌（Public access token）**: 在您账户的[“令牌”（Tokens）页面](https://account.mapbox.com/access-tokens/)，您可以复制您的 _默认公开令牌（default public token）_ 或点击**创建一个令牌（Create a token）** 按钮来新建一个公开访问口令。
+- **一个包含 `Downloads:Read` 域的私密访问令牌（secret access token）**。如果您计划 [通过直接下载的方式](#add-the-dependency)来安装Maps SDK，则无需进行此项配置，可以直接跳过此步骤。
+   1. 在您账户的[“令牌”（Tokens）页面](https://account.mapbox.com/access-tokens/)，点击 **创建一个令牌（Create a token）** 按钮。
    2. 在创建口令的页面上，为此口令填写一个名字并确保 `Downloads:Read` 旁的复选框被选中。
-   3. 点击页面底部的 **创建口令（Create token）** 按钮来完成口令的创建。
-   4. 现在您已经完成了一个 _私密访问口令（secret token）_ 的创建, 这意味着您只有一次机会复制并将其保存在安全的位置。
+   3. 点击页面底部的 **创建令牌（Create token）** 按钮来完成口令的创建。
+   4. 现在您已经完成了一个 _私密访问令牌（secret token）_ 的创建, 这意味着您只有一次机会复制并将其保存在安全的位置。
 
-您不应将以上创建好的口令放在可以被公开访问到的源代码中，因为这样可能会使口令被未经允许的用户访问得到。相反，您应该将其存放在你电脑上的安全位置并利用[Gradle properties](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties) 的优势来保证它们只会在你的应用编译生成时被加入应用。一旦配置步骤完成，您就可以在应用的其它部分访问您的凭据。
+您不应将以上创建好的令牌放在可以被公开访问到的源代码中，因为这样可能会使令牌被未经允许的用户访问得到。相反，您应该将其存放在你电脑上的安全位置并利用[Gradle properties](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties) 的优势来保证它们只会在你的应用编译生成时被加入应用。一旦配置步骤完成，您就可以在应用的其它部分访问您的凭据。
 
-#### Configure your secret token
+#### 配置您的私密令牌
 
 {{ <Note title="请注意">如果您计划通话直接下载的方式安装Maps SDK则无需配置私密口令并可以跳过此步骤。</Note>}}
 
-To avoid exposing your secret token, add it as an environment variable:
+为了防止私密令牌（secret token）泄露，请将其添加为环境变量：
 
-1. Find or create a `gradle.properties` file in your [Gradle user home folder](https://docs.gradle.org/current/userguide/directory_layout.html#dir:gradle_user_home). The folder can be found at `«USER_HOME»/.gradle`. Once you have found or created the file, its path should be `«USER_HOME»/.gradle/gradle.properties`. You can read more about Gradle properties in the [official Gradle documentation](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties).
-2. Add your secret token your `gradle.properties` file: 
+1. 在[Gradle用户主目录](https://docs.gradle.org/current/userguide/directory_layout.html#dir:gradle_user_home)文件夹中新建或找到已经存在的`gradle.properties`文件。此文件夹可以在`«USER_HOME»/.gradle`位置被找到。您找到了或创建了此文件之后，其路径应为 `«USER_HOME»/.gradle/gradle.properties`。您可以在[Gradle官方文档](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties)中阅读与Gradle配置相关的更多信息。
+2. 将您的私密访问令牌（secret token）添加到您的 `gradle.properties` 文件中: 
 
 ```
 MAPBOX_DOWNLOADS_TOKEN=PASTE_YOUR_SECRET_TOKEN_HERE
 ```
 
-#### Configure your public token
+#### 配置您的公开访问令牌
 
-There are many ways to configure your public access token. Many of the examples and code snippets on this site assume your token is stored in a file in your project with other string values. If you would like to manage your public access token this way, open your project's `R.strings.xml` file and add the following string resource:
+您可以选用多种方式来配置公开访问令牌。本网站的许多示例和代码片段都假定您的令牌与其它字符串一起存放在项目的文件中。如果您也想用这种方式来管理您的公开访问令牌，请打开您项目的 `R.strings.xml` 文件并添加以下字符串资源：
 
 ```xml
 <string name="mapbox_access_token">MAPBOX_ACCESS_TOKEN</string>
 ```
 
-If you ever need to [rotate your access token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/), you will need to update the token value in your `R.strings.xml` file. 
+如果需要 [更新您的访问令牌](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/)，请在 `R.strings.xml` 文件中更新令牌的值。
 
-### Add the dependency
+### 添加依赖
 
-Mapbox provides the Maps SDK via **Maven** and **direct download**. You can choose whichever you prefer.
+Mapbox通过 **Maven** 和 **直接下载** 两种方式提供Maps SDK依赖。您可以根据您的喜好来选择：
 
 {{<MapsInstall
   releaseType="stable" 
@@ -89,9 +89,9 @@ Mapbox provides the Maps SDK via **Maven** and **direct download**. You can choo
 />}}
 
 
-### Configure permissions
+### 配置权限
 
-Starting with the 5.0 version of the Maps SDK, you can use the Manifest merge feature to reduce the need to include any Maps SDK required things inside of your application's manifest file. You'll need to add _either_ the Fine **or** Coarse location permission if you plan to display a user's location on the map or get the user's location information. The user location permission should also be checked during runtime using the [`PermissionsManager`](https://docs.mapbox.com/android/core/overview/#permissionsmanager).
+从Maps SDK版本5.0开始，我们逐渐利用 Manifest 合并功能，减少在应用程序的 Manifest 文件中包含任何 Maps SDK 所需项。 如果您打算在地图上显示用户的位置或者获取用户的位置信息，_无论_ 是精准位置信息 Fine **还是** 粗略位置信息，您都需要在Manifest文件中添加权限。同时，您也应该在运行时使用[`PermissionsManager`](https://docs.mapbox.com/android/core/overview/#permissionsmanager)来检查用户位置权限。
 
 ```xml
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
