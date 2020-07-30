@@ -1,35 +1,35 @@
 ---
-title: "Styling the map"
-description: "Learn how to use the Mapbox Maps SDK for Android to change your map style to a custom style or a pre-made style made by the talented Mapbox cartography team."
-prependJs:
+标题: "设置地图样式"
+描述: "了解如何使用Android版Mapbox Maps SDK来自定义地图样式或选择Mapbox制图人才团队制作的预设样式。"
+前置:
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
-contentType: guide
-language:
+内容类型: 指南
+语言:
 - Java
 - Kotlin
 ---
 
-The Maps SDK for Android allows full customization of the look of the map. You can choose one of Mapbox's core styles designed by our cartographers or create a custom map style by adjusting the map's colors, icons, and fonts to match your application's UI or company's brand.
+Android版Mapbox Maps SDK允许完全自定义地图外观。您可以选择一个由我们的制图师设计的Mapbox核心样式，也可以通过调整地图的颜色、图标和字体来设置适合您的应用程序界面或公司品牌的地图样式。
 
-There are two approaches to customizing the look of the map: creating a custom map style with Mapbox Studio and loading it into your application or updating map features at runtime using the Maps SDK for Android.
+自定义地图外观的方式有两种：使用Mapbox Studio创建自定义地图样式并将其加载到您的应用程序中，或在运行时使用Android版Maps SDK更新地图要素。
 
-Using runtime styling, you're able to dynamically change the look and feel of your map in real time. Lighten or darken the map based on the time of day, personalize icons and map colors based on your users’ activity, switch languages dynamically, or increase the size of labels based on user preferences to improve legibility.
+通过实时运行样式，您可以动态更改地图样式和观感.例如基于一天中的不同时段调整地图明暗，根据用户活动更改个性化图标和地图颜色，动态切换语言，或根据用户喜好放大标签以提高可读性。
 
-## Style object
+## Style对象
 
-A `Style` object refers to [the Mapbox map style](https://www.mapbox.com/help/define-style/) being used in your application. Sources, layers, and images appear on the map via a map style, so they are added and retrieved via the `Style` object rather than adding them to the actual `MapboxMap` object.
+一个`Style`对象是指[Mapbox地图样式](https://www.mapbox.com/help/define-style/) 在您的应用程序中使用。源，图层和图像通过地图样式显示在地图上，因此它们是通过Style对象添加和检索的，而不是将它们添加到实际MapboxMap对象中。
 
-A `Style` object must be created and given to the map for the map to appear properly. Create a `Style` by using a:
+首先必须创建一个`Style`对象并将其分配给地图，地图才能正确显示。使用以下方法创建一个`Style`对象：
 
-- default Mapbox style found in the `Style` class constants
-- custom map style URL from a Mapbox account
-- raw style JSON string or referenced style JSON via `asset://` or `path://`
+- 在`Style`类常量中找到的默认Mapbox样式
+- 来自Mapbox帐户的自定义地图样式网址（URL）
+- 原始样式JSON字符串或引用样式JSON，通过使用`asset://`或`path://`
 
-If the style fails to load or you set an invalid style URL, the map view will become blank. An error message will be logged in the Android logcat and the `MapView.OnDidFailLoadingMapListener` callback will be triggered.
+如果无法加载样式或设置了无效的样式网址，则地图视图将变为空白。系统将在Android logcat中记录一条错误消息，`MapView.OnDidFailLoadingMapListener` 将会触发回调。
 
-## Changing the map style
+## 更改地图样式
 
-You'll have to change the map style URL programmatically if you'd like to load a completely new map style. Call `mapboxMap.setStyle()` with the style URL as the parameter.
+如果要加载全新的地图样式，则必须以编程方式更改地图样式网址（URL）。调用 `mapboxMap.setStyle()` 并把样式网址（URL）作为参数。
 
 {{
 <AndroidActivityToggle
@@ -58,18 +58,18 @@ mapboxMap.setStyle(Style.Builder().fromUri(uniqueStyleUrl)) {
 />
 }}
 
-## Default Mapbox styles
+## 默认Mapbox样式
 
-As powerful as styling the map can be, Mapbox offers six professionally designed map styles:
+尽管自定义地图样式功能强大，Mapbox依然提供了六种专业设计的地图样式：
 
-1. **Mapbox Streets:** Mapbox Streets is a comprehensive, general-purpose map that emphasizes legible styling of road and transit networks.
-2. **Outdoor:** Mapbox Outdoors is a general-purpose map with curated datasets and specialized styling tailored to hiking, biking, and the most adventurous use cases.
-3. **Light and Dark:** Mapbox Light and Mapbox Dark are subtle, full-featured maps designed to provide geographic context while highlighting the data on your analytics dashboard, data visualization, or data overlay.
-4. **Satellite:** is our full global basemap that works as a blank canvas or an overlay for your own data.
-5. **Satellite Streets:** combines our Mapbox Satellite with vector data from Mapbox Streets. The comprehensive set of road, label, and POI information brings clarity and context to the crisp detail in our high-resolution satellite imagery.
-6. **Traffic:** Visually show realtime traffic using either the provided day or night traffic styles.
+1. **Mapbox 街道：** Mapbox街道地图是综合性通用地图，突出道路和公交网络的清晰。
+2. **户外：** Mapbox户外地图针对远足，自行车和极限冒险活动，定制了具有精选数据集和专门样式的通用地图。
+3. **明暗：** Mapbox明暗地图是巧妙的全要素地图，旨在提供地理环境，同时突出显示分析仪表板，数据可视化或数据覆盖中的信息。
+4. **卫星:** 我们的全球卫星底图，可用作空白画布或您数据的覆盖图。
+5. **卫星街道:** 卫星地图结合Mapbox街道地图的矢量数据，包括全面的道路、标签和POI信息（地标、景点等）数据集，明确高分卫星图像的细节及其背景。
+6. **交通:** 交通地图使用Mapbox提供的白天或夜晚交通样式来直观地显示交通流量。
 
-The Maps SDK's `Style` class has `private static final String`s of the default Mapbox styles' URLs, so that you can conveniently reference the styles when you have to pass the style URL through the `setStyle()` method or other methods in your project. For example:
+Maps SDK的`Style`类具有`private static final String`默认的Mapbox样式网址。当您要通过 `setStyle()`方法或其他方法传递样式网址时，可以在项目中方便地引用样式。例如：
 
 {{
 <AndroidActivityToggle
@@ -99,9 +99,9 @@ mapboxMap.setStyle(Style.MAPBOX_STREETS) {
 }}
 
 
-## Retrieving a map layer
+## 检索地图图层
 
-Retrieving a map layer is the first step to adjusting the visual look of the map in real time. Every map style has a stack of map layers and each layer has an id. In the professionally-designed `Mapbox Streets` style, layers in that style have ids such as `landuse`, `settlement-label`, `natural-point-label`, and `building`.
+检索地图图层是实时调整地图视觉外观的第一步。每个地图样式都有一堆地图图层，每个图层都有一个ID。在专业设计的 `Mapbox Streets`样式中，图层有这样一些ID：`landuse（土地利用）`, `settlement-label（居名地）`, `natural-point-label（自然点）`, 和 `building（建筑）`。
 
 {{
 <AndroidActivityToggle
@@ -127,7 +127,7 @@ mapboxMap.getStyle {
 />
 }}
 
-You can view the map style's layer Z-index order and layer ids in Mapbox Studio. Another way to view this information is by printing out each layer ID to your Android logcat once the map has been loaded on the device.
+您可以在Mapbox Studio中查看地图样式的图层Z索引顺序和图层ID。查看此信息的另一种方法是将地图加载到设备后，将每个图层ID打印到Android logcat。
 
 {{
 <AndroidActivityToggle
@@ -168,7 +168,7 @@ mapView?.getMapAsync {
 />
 }}
 
-Once you have an individual map layer, you can then use [data-driven styling](/android/maps/overview/data-driven-styling/) and [expressions](/android/maps/overview/expressions/) to adjust the layer's properties. For example, here's how you'd use runtime styling to change the `water` layer's blue color to a deeper blue color:
+有了单独的地图图层后，便可以使用[数据驱动样式](/android/maps/overview/data-driven-styling/) 和 [表达式](/android/maps/overview/expressions/) 来调整图层的属性。例如，以下是用实时运行样式将`water（水系）`图层的蓝色更改为更深的蓝色的方法：
 
 {{
 <AndroidActivityToggle
@@ -208,6 +208,6 @@ button.setOnClickListener {
 />
 }}
 
-## Style-related events
+## 与地图样式有关的事件
 
-Changing the map's style triggers a "map event". Read the [map change event documentation](https://docs.mapbox.com/android/maps/overview/events/#map-change-events) for more information about the events and how to display or re-display data on your map _after_ a map style has finished loading.
+更改地图样式会触发“地图事件”。阅读[地图更改事件文档](https://docs.mapbox.com/android/maps/overview/events/#map-change-events) 以获取有关事件的更多信息以及如何在地图样式加载完成后显示或重新显示数据。
