@@ -1,17 +1,17 @@
 ---
-title: "UI settings"
-description: "Learn how to use the Mapbox Maps SDK for Android to adjust on-screen UI such as the compass, Mapbox logo, and attribution."
-prependJs:
+标题: "用户界面（UI）设置"
+描述: "了解如何使用Android版Mapbox Maps SDK调整屏幕上的用户界面（UI），例如指南针，Mapbox徽标和属性。"
+前置:
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
   - "import RelatedPage from '@mapbox/dr-ui/related-page';"
-contentType: guide
-language:
+内容类型: 指南
+语言:
 - Java
 - Kotlin
 ---
 
 
-The Mapbox Maps SDK for Android gives developers the ability to adjust certain elements of the map's user interface (UI). Once a `MapboxMap` has been correctly set up, obtain its `UiSettings` object.
+Android版Mapbox Maps SDK 能调整地图用户界面（UI）的某些元素。开发人员只要正确设置`MapboxMap`，就能获取它的`UiSettings`对象。
 
 {{
 <AndroidActivityToggle
@@ -40,11 +40,11 @@ mapboxMap.setStyle(Style.MAPBOX_STREETS) {
 />
 }}
 
-Changes to gesture recognition, the compass, the Mapbox logo, and attribution can be made once you have the `UiSettings` object. Changes made to `UiSettings` are immediately reflected on the map.
+拥有`UiSettings`对象后，就可以更改手势识别，指南针，Mapbox徽标和属性。更改通过`UiSettings`立即反映在地图上。
 
-You can also configure the UI settings with [the Maps SDK's XML attributes](/android/maps/overview/#mapview-xml-attributes) instead of the `UiSettings` class' methods.
+您还可以使用[Maps SDK 的XML属性](/android/maps/overview/#mapview-xml-attributes) 进行用户界面（UI）设置，而不是用`UiSettings`类的方法。
 
-All the UI settings also have "get" methods that allow you to see the current settings (for example, if the compass is enabled, what the logo's margins are, or what the custom compass image is).
+所有UI设置还具有“获取（get）”方法，这些方法使您可以查看当前设置（例如，如果启用了指南针，徽标的边距是多少，或者自定义指南针图像是什么）。
 
 {{
 <AndroidActivityToggle
@@ -76,13 +76,13 @@ mapboxMap.setStyle(Style.MAPBOX_STREETS) {
 />
 }}
 
-## Gestures
+## 手势
 
-The Mapbox Maps SDK for Android uses [the Mapbox Gestures for Android library](/android/maps/overview/gestures/) to detect gestures.
+Android版Mapbox Maps SDK使用[Android版Mapbox手势库](/android/maps/overview/gestures/)来检测手势。
 
-Adjust or completely disable zoom, tilt, scroll, rotate, quick zoom, and double tap gesture recognition. Disabling map gestures doesn't affect whether you can change the camera position programmatically.
+调整或完全禁用缩放，倾斜，滚动，旋转，快速缩放和双击手势识别。禁用地图手势不会影响您通过编程方式更改相机位置。
 
-For example, here's how you would disable the ability to increase the zoom level by double tapping on the map:
+例如，以下是通过双击地图来禁用增加缩放级别的方法：
 
 {{
 <AndroidActivityToggle
@@ -114,17 +114,17 @@ mapboxMap.setStyle(Style.MAPBOX_STREETS) {
 />
 }}
 
-See the [map camera position documentation](/android/maps/overview/camera/#camera-position) for more information about how gestures can affect camera position.
+有关手势如何影响相机位置的更多信息，请参见[地图相机位置文档](/android/maps/overview/camera/#camera-position) 。
 
-## Compass
+## 指南针
 
-The Maps SDK contains a compass image, which appears on the map when the map is rotated in any direction. The compass _doesn't_ represent the physical device's relation to the magnetic north pole. The compass image rotates based on the on-screen map rotation.
+Maps SDK包含一个指南针图像，当地图沿任何方向旋转时，该指南针图像都会显示在地图上。罗盘并不代表物理设备与磁北极的关系，指南针图像根据屏幕上的地图旋转而旋转。
 
-When the user clicks on the compass image, the camera animates back to the default north orientation (bearing of 0) and the compass image fades away shortly afterwards.
+当用户单击指南针图像时，相机会以动画方式返回默认的北向（方位为0），不久后指南针图像就会消失。
 
-By default, the compass appears in the upper right hand corner of the `MapView`, but its margins can be adjusted. A custom drawable image can be passed to the Maps SDK to replace the default image.
+默认情况下，指南针显示在的右上角`MapView`，但是可以调整其边距。您可以将自定义可绘制图像传递到Maps SDK，以替换默认图像。
 
-Another option is to completely disable the compass:
+或选择完全禁用指南针：
 
 {{
 <AndroidActivityToggle
@@ -157,11 +157,11 @@ mapboxMap.setStyle(Style.MAPBOX_STREETS) {
 }}
 
 
-## Logo and attribution
+## 徽标和属性
 
-Please read [Mapbox's attribution policy](/android/maps/overview/#attribution) for information on displaying the Mapbox wordmark logo and attribution.
+请阅读 [Mapbox的属性条例](/android/maps/overview/#attribution) ，以获取有关显示Mapbox字标和属性的信息。
 
-The logo's properties such as margins and gravity can be adjusted with XML or the `UiSettings` object. The attribution `i` icon's properties such as tint, margins, and gravity can also be adjusted with XML or the `UiSettings` object.
+徽标的属性（例如边距和重力）可以使用XML或`UiSettings`对象进行调整。图标的属性值`i`（例如色调，边距和重力）也可以使用XML或`UiSettings`对象进行调整。
 
 {{
   <RelatedPage
@@ -169,5 +169,5 @@ The logo's properties such as margins and gravity can be adjusted with XML or th
     title="Attribution icon color"
     contentType="example">
 }}
-See how to customize the attribution `i` icon's color to match a map style or stand out from the style color.
+了解如调整图标的属性值`i`，如颜色，以匹配或凸显于地图样式中。
 {{</RelatedPage>}}
