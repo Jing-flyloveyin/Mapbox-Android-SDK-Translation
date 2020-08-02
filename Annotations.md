@@ -11,23 +11,23 @@ language:
 - Kotlin
 ---
 
-The Mapbox Maps SDK for Android provides several different ways to mark a single point, create a circle, add a line between many points, or draw a polygon. Usually, you can draw these objects either on top of the map or in some cases, within the map itself.
+Mapbox Maps SDK for Android提供几种不同的方法来标记单个点、创建一个圆、在多个点之间添加线条或绘制一个多边形。 通常，这些对象的绘制是在地图顶部或地图本身（某些情况下）中进行的。
 
-{{<Note theme="warning" title="Annotations have been deprecated and replaced by the Mapbox Annotation Plugin for Android">}}
-As of the 7.0.0 release of the Mapbox Maps SDK for Android, much of the code on this page has been deprecated. **To add icons, text, lines, or polygons to the map, use the [Mapbox Annotation Plugin for Android](/android/plugins/overview/annotation/).** The Annotation Plugin simplifies annotations and provides additional flexibility for displaying data.
+{{<Note theme="warning" title="标注已经被弃用，并由Mapbox标注插件for Android取代">}}
+随着Mapbox Maps SDK版本7.0.0的发布，此页面上的许多代码已经被弃用。 **需要在地图上添加图标、文本、线条或多边形，请使用 [Mapbox标注插件for Android](/android/plugins/overview/annotation/). ** 标注插件简化了标注操作并且在展示数据方面有更好的灵活性。
 
-Classes on this page such as `Polygon`, `Polyline`, and `Marker` will no longer be maintained. This also means classes such as `PolygonOptions` and `PolylineOptions` and methods such as `addPolygon()`, `addPolyline()`, or `addMarker()` should not be used.
+此页面上诸如 `Polygon`, `Polyline`，和 `Marker` 等类将不会继续存在。这也意味着您不应该再使用 `PolygonOptions` 和 `PolylineOptions` 这些类和 `addPolygon()`、 `addPolyline()` 和 `addMarker()` 等方法。
 {{</Note>}}
 
-## Source and layer
+## 数据源和地图层
 
-Using [data sources](/android/maps/overview/data-driven-styling/#sources) and [map layers](/android/maps/overview/data-driven-styling/#layers) together is the most performant option for showing data on a Mapbox map. This combination also gives you much more fine-grain control over:
+在Mapbox地图中展示数据的最高效的方式是将 [数据源](/android/maps/overview/data-driven-styling/#sources) 和 [地图层](/android/maps/overview/data-driven-styling/#layers) 组合使用。这种组合还可以使您更精细地控制：
 
-- Icons that represent individual points
-- Lines
-- Polygons
+- 代表单个点的图标
+- 线条
+- 多边形
 
-See [data-driven styling](/android/maps/overview/data-driven-styling/) for more information. You can explore the source and layer combination for creating annotations. Below, you'll find information about less complex (and less performant) ways to show annotations.
+请参阅 [数据驱动样式](/android/maps/overview/data-driven-styling/) 页面了解更多信息。您可以探索通过组合数据源和图层进行标注的方式。您将在下方找到相对简单（但是性能较差）的关于显示标注的信息。
 
 ## Markers
 
