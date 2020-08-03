@@ -98,7 +98,7 @@ mapboxMap?.addMarker(MarkerViewOptions()
 />
 }}
 
-### 捕获标记时间
+### 捕获标记事件
 
 用户点击标记时，Mapbox Maps SDK for Android 提供一个方便的监听器来进行捕获。 默认情况下，所有标记都随附一个 `onMarkerClick` 事件监听器来显示和隐藏信息窗口。您可以覆盖此默认事件侦听器，并使用 `setOnMarkerClickListener` 方法设置自己的事件监听器。
 
@@ -161,13 +161,13 @@ marker.setIcon(icon);
 使用 `ValueAnimator` 以在两个位置的标记间添加动画。
 {{</RelatedPage>}}
 
-## Polyline and polygons
+## 折线和多边形
 
-Adding a line or polygon to your map is like adding a marker. Due to the nature of these objects, different APIs are exposed, such as polygon color or line width. Instead of taking in a single position, bundle all your `LatLng` objects inside of a `List` and then pass them in using the `addAll()` method.
+向地图中添加线条或多边形，跟添加一个标记类似。由于这些对象各自的性质，SDK提供了不同的 API，例如多边形颜色或线条宽度。与采用单一位置不同的是，需要将所有 `LatLng` 对象放入 `List` 中，然后使用 `addAll()` 方法将它们传入。
 
-### Draw a polyline on the map
+### 在地图上绘制一条折线
 
-Make sure that the first and last `Point` locations are the same.
+请确保第一个和最后一个 `点` 位置相同。
 
 {{
 <AndroidActivityToggle
@@ -190,9 +190,9 @@ mapboxMap.addPolyline(PolylineOptions()
 />
 }}
 
-### Draw a polygon on the map
+### 在地图上绘制一个多边形
 
-Make sure that the first and last `Point` locations are the same.
+请确保第一个和最后一个 `点` 位置相同。
 
 {{
 <AndroidActivityToggle
@@ -246,9 +246,9 @@ mapboxMap.addPolygon(PolygonOptions()s
 }}
 
 
-### Use line and fill layers
+### 使用线条并填充图层
 
-To use the `addPolyline()` or `addPolygon()` methods in the code above, you'll have a list of `LatLng` objects which represent the line or the polygon area. As explained at the top of this page, using sources and layers gives you much more flexibility to show geographic data on your map. With your list of `LatLng` objects, you could create a `FeatureCollection` and use that `FeatureCollection` to create a `GeoJsonSource`. Feed the `GeoJsonSource` to:
+要在以上代码中使用 `addPolyline()` 或 `addPolygon()` 方法，您将拥有表示该线条或多边形区域的 `LatLng` 对象的列表。正如本页顶部所说明的那样，使用数据源和图层，可以让您在地图上更灵活地显示地理数据。您可以使用 `LatLng` 对象的列表来创建 `FeatureCollection` 并使用该 `FeatureCollection` 来创建 `GeoJsonSource`。将 `GeoJsonSource` 传递给：
 
--  a `LineLayer` to show the line that you'd otherwise draw via `addPolyline()`.
--  a `FillLayer` to show the area that you'd otherwise draw via `addPolygon()`.
+-  一个 `LineLayer` 层，从而显示您通过 `addPolyline()`绘制的线条。
+-  一个 `FillLayer` 层，从而显示您通过 `addPolygon()`绘制的区域。
