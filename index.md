@@ -91,15 +91,15 @@ Mapbox通过 **Maven** 和 **直接下载** 两种方式提供Maps SDK依赖。�
 
 ### 配置权限
 
-从Maps SDK版本5.0开始，我们逐渐利用 Manifest 合并功能，减少在应用程序的 Manifest 文件中包含任何 Maps SDK 所需项。 如果您打算在地图上显示用户的位置或者获取用户的位置信息，_无论_ 是精准位置信息 Fine **还是** 粗略位置信息，您都需要在Manifest文件中添加权限。同时，您也应该在运行时使用[`PermissionsManager`](https://docs.mapbox.com/android/core/overview/#permissionsmanager)来检查用户位置权限。
+从Maps SDK版本5.0开始，我们逐渐利用 Manifest 合并功能，减少在应用程序的 Manifest 文件中包含任何 Maps SDK 所需项。 如果您打算在地图上显示用户的位置或者获取用户的位置信息，_无论_ 是精准位置信息 **还是** 粗略位置信息，您都需要在Manifest文件中添加权限。同时，您也应该在运行时使用[`PermissionsManager`](https://docs.mapbox.com/android/core/overview/#permissionsmanager)来检查用户位置权限。
 
 ```xml
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
-### Add a map
+### 添加地图
 
-Open the activity you'd like to add a map to and use the code below.
+打开您想添加地图的 Activity 文件，并将以下代码添加到该文件。
 
 {{
 <AndroidActivityToggle
@@ -165,7 +165,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 />
 }}
 
-Open the activity's XML layout file and add the `mapView` within your layout.
+打开Activity的XML文件并在布局中添加 `mapView` 。
 
 ```xml
 <com.mapbox.mapboxsdk.maps.MapView
@@ -175,9 +175,9 @@ Open the activity's XML layout file and add the `mapView` within your layout.
   />
 ```
 
-### Lifecycle methods
+### 生命周期相关方法
 
-The `MapView` contains its own lifecycle methods for managing Android's OpenGL lifecycle, which must be called directly from the containing Activity. In order for your app to correctly call the MapView's lifecycle methods, you must override the following lifecycle methods in the Activity that contains the MapView and call the respective MapView method. For example, your `onStart()` method should look like this:
+ `MapView` 包含有自己的生命周期相关的方法，用来管理 Android 的 OpenGL 生命周期, 并需要从包含 MapView 的 Activity 中直接调用该方法。为了使应用程序能够正确调用 MapView 的生命周期方法，您必须在包含 MapView 的 Activity 中覆盖以下方法，并调用相应的 MapView 方法。例如，您的 `onStart()` 应该如下所示：
 
 {{
 <AndroidActivityToggle
@@ -201,7 +201,7 @@ override fun onStart() {
 }}
 
 
-Like the `onStart()` override above, the following lifecycle methods also need to be overridden and include the matching `MapView` method:
+正如以上被重写的 `onStart()` 方法，以下生命周期相关方法也应该被重写并且在其中包含对应的 `MapView` :
 
 {{
 <AndroidActivityToggle
@@ -282,7 +282,7 @@ override fun onDestroy() {
 }}
 
 
-If you're using a fragment, call `mapview.onDestroy()` inside the fragment's `onDestroyView()` method rather than inside `onDestroy()`:
+如果您是在Fragment中使用地图，请在 `onDestroyView()` 中而不是 `onDestroy()` 中调用 `mapview.onDestroy()` 生命周期方法:
 
 {{
 <AndroidActivityToggle
@@ -306,29 +306,29 @@ override fun onDestroyView() {
 />
 }}
 
-## Attribution
+## 归属
 
-You must include the Mapbox wordmark and attribution notice on any map that uses the Mapbox Maps SDK for Android. The SDK provides an attribution layout that includes all required information and can be customized either in xml or using the `UiSettings` object.
+您必须在任何使用 Mapbox Maps SDK for Android 的地图上包含 Mapbox的文字水印和归属通知。我们提供一个归属布局，其中包含所有必需信息, 可以使用 xml 或 `UiSettings` 对象进行自定义。
 
-[You may adjust the position of the Mapbox wordmark and attribution notice](/android/maps/overview/ui-settings/#logo), but they must stay visible on the map. You may also change the background and text color of the attribution notice to match your design aesthetics, but all information must be legible.
+[您可以调整 Mapbox 水印和归属通知的位置](/android/maps/overview/ui-settings/#logo)，但是它们必须在地图上保持可见。您也可以更改归属通知的背景和文本颜色以最佳地匹配您的设计美学，但是所有信息必须可读。
 
-You may not otherwise alter the Mapbox wordmark or text attribution notice. If you wish to move or to remove the Mapbox wordmark, please [contact our sales team](https://www.mapbox.com/contact/sales/) to discuss options available under our Enterprise plans.
+您不应该以其他方式更改 Mapbox 水印或文本归属通知。如果您想移动或移除 Mapbox 水印, 请 [联系我们的销售团队](https://www.mapbox.com/contact/sales/) 以讨论我们的企业级支持计划中更多的可行性。
 
 {{
   <RelatedPage
     url="https://docs.mapbox.com/help/how-mapbox-works/attribution/"
-    title="Attribution guidelines"
+    title="归属原则"
     contentType="guide">
 }}
-Learn more about what kinds of attribution Mapbox requires and why.
+了解更多关于Mapbox的归属要求和原因。
 {{</RelatedPage>}}
 
-## Telemetry opt out
-Mapbox Telemetry is a [powerful location analytics platform](https://www.mapbox.com/telemetry/) included in this SDK. By default, the SDK sends anonymized location and usage data to Mapbox whenever the host app causes it to be gathered. The [Mapbox Terms of Service](https://www.mapbox.com/tos/) require your app to provide users with a way to individually opt out of Mapbox Telemetry, which is provided automatically as part of the [attribution](#attribution) control. If you hide the attribution control, you must provide an alternative opt out for your users to use.
+## 选择退出Telemetry
+Mapbox Telemetry 是一个包含在此 SDK 中的 [强大的位置分析平台](https://www.mapbox.com/telemetry/) 。默认情况下，每当主机应用触发信息收集时，匿名位置和使用数据会发送到 Mapbox。[Mapbox 服务条款](https://www.mapbox.com/tos/) 要求您的应用为用户提供一种单独选择退出 Mapbox Telemetry 的方法；作为 [归属](#attribution) 控制的一部分，其实默认提供的。如果您隐藏归属控制，必须提供可供用户使用的替代性退出选项。
 
-## MapView XML attributes
+## MapView XML属性
 
-XML attributes can be added inside of the XML `MapView` to further customize map behavior, such as setting the starting camera position, enabling tilt, or adjusting the compass' location on the screen. All `MapView` XML attributes start with `mapbox_` for identification and for removing any potential conflicts with other libraries. Due to the current implementation of Android Studio, you can't autogenerate `MapView` attributes by typing. [View the full list of `MapView` attributes here](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/res-public/values/public.xml).
+可以在 `MapView` 中添加属性来进一步定制地图的行为，例如Camera起始位置、启用倾斜或调整指南针在屏幕上的位置。所有的 `MapView` XML属性都以 `mapbox_` 开头以便于区分和避免与其他库发生任何潜在冲突。由于 Android Studio 的当前实现，您不能通过输入来自动生成 `MapView` 属性。请在此处 [查看 `MapView` 属性的完整列表](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/res-public/values/public.xml)。
 
 Some examples of `MapView` attributes are:
 
@@ -344,8 +344,8 @@ Some examples of `MapView` attributes are:
   mapbox:mapbox_uiRotateGestures="false"/>
 ```
 
-## Understanding GeoJSON
+## 了解 GeoJSON
 
-Many parts of the Mapbox Maps SDK for Android are based on GeoJSON, an open standard file format for representing map data. Many Maps SDK methods take GeoJSON geometries as a parameter or return GeoJSON features. For example, the Maps SDK has [a `GeoJSONSource` class](/android/maps/overview/data-driven-styling/#geojson) for adding data to a map style, and one helpful Maps SDK's [querying method](/android/maps/overview/query/#query-rendered-features) returns a list of GeoJSON `Feature`s.
+Mapbox Maps SDK for Android的许多部分都基于GeoJSON，这是一种用于表示地图数据的开放标准文件格式。许多Maps SDK方法将GeoJSON几何图形作为参数或返回GeoJSON特征。 例如，Maps SDK有一个 [ `GeoJSONSource` 类](/android/maps/overview/data-driven-styling/#geojson) 用于将数据添加到地图样式中，一个有用的Maps SDK [查询方法](/android/maps/overview/query/#query-rendered-features) 会返回一个GeoJSON `特征（Feature）` 列表。
 
-The [Mapbox Java SDK's GeoJSON module](/android/java/overview/geojson/) provides GeoJSON support to the Maps SDK. Although it's not required to use the Maps SDK, becoming more familiar with GeoJSON will greatly enhance your understanding and usage of the Maps SDK. Make sure to read [how to use the Java SDK's GeoJSON module with the Maps SDK](/android/java/overview/geojson/#use-with-the-maps-sdk).
+ [Mapbox Java SDK 的 GeoJSON 模块](/android/java/overview/geojson/) 为Maps SDK提供了GeoJSON支持。虽然理解GeoJSON对于使用Maps SDK并不是必须的，但更加熟悉GeoJSON将大大增强您对Maps SDK的理解和使用。Make sure to read请务必阅读 [如何在Maps SDK中使用Java SDK的GeoJSON模块](/android/java/overview/geojson/#use-with-the-maps-sdk).
