@@ -348,4 +348,4 @@ Some examples of `MapView` attributes are:
 
 Mapbox Maps SDK for Android的许多部分都基于GeoJSON，这是一种用于表示地图数据的开放标准文件格式。许多Maps SDK方法将GeoJSON几何图形作为参数或返回GeoJSON特征。 例如，Maps SDK有一个 [ `GeoJSONSource` 类](/android/maps/overview/data-driven-styling/#geojson) 用于将数据添加到地图样式中，一个有用的Maps SDK [查询方法](/android/maps/overview/query/#query-rendered-features) 会返回一个GeoJSON `特征（Feature）` 列表。
 
- [Mapbox Java SDK 的 GeoJSON 模块](/android/java/overview/geojson/) 为Maps SDK提供了GeoJSON支持。虽然理解GeoJSON对于使用Maps SDK并不是必须的，但更加熟悉GeoJSON将大大增强您对Maps SDK的理解和使用。Make sure to read请务必阅读 [如何在Maps SDK中使用Java SDK的GeoJSON模块](/android/java/overview/geojson/#use-with-the-maps-sdk).
+ [Mapbox Java SDK 的 GeoJSON 模块](/android/java/overview/geojson/) 为Maps SDK提供了GeoJSON支持。虽然理解GeoJSON对于使用Maps SDK并不是必须的，但更加熟悉GeoJSON将大大增强您对Maps SDK的理解和使用。请务必阅读 [如何在Maps SDK中使用Java SDK的GeoJSON模块](/android/java/overview/geojson/#use-with-the-maps-sdk).
