@@ -1,6 +1,6 @@
 ---
-title: "Data-driven styling"
-description: "Documentation for changing the look and feel of your Mapbox map in real time with the Mapbox Maps SDK for Android."
+title: "数据驱动的样式"
+description: "使用 Android版 Mapbox Maps SDK实时更改 Mapbox 地图外观的文档。"
 prependJs:
   - "import RelatedPage from '@mapbox/dr-ui/related-page';"
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
@@ -11,7 +11,7 @@ language:
 - Kotlin
 ---
 
-Use the Maps SDK's data-driven styling capabilities to create and display many types of data. You can dynamically change the look and feel of your map in real time based on the information within a particular dataset. Data-driven styling is largely built on the idea of sources and layers.
+使用 Maps SDK 的数据驱动样式功能来创建和显示多种类型的数据。您可以根据特定数据集中的信息实时动态地更改地图的外观。数据驱动的样式很大程度上基于源和层的概念。
 
 {{
   <RelatedPage
@@ -27,15 +27,16 @@ Sources and layers provide nimble options for customizing the look of a Mapbox m
 {{</Note>}}
 
 
-## Sources
+## 源
 
-Sources hold the actual data and layers reference sources. That is how to show data on your Mapbox map. There are a handful of different source types supported and choosing the correct one to use depends on your data type. Adding a source won't instantly make data appear on the map because sources don't contain styling details like color or width. Layers refer to a source and give it a visual representation.
+源保存实际数据，图层参考源。 这就是在Mapbox地图上显示数据的方法。 支持多种不同的源类型，选择正确的源类型取决于您的数据类型。 添加源并不会立即使数据显示在地图上，因为源不包含颜色或宽度等样式细节。 层是指源，并为其提供可视化表示。
 
-Two parameters are required to use a source. A source requires a unique `String` ID and requires some sort of data.
+使用源需要两个参数。源需要唯一的`String`ID，并且需要某种数据。  
 
-### Vector
+### 矢量
 
-`VectorSource` tiles must be in [Mapbox Vector Tile format](https://www.mapbox.com/developers/vector-tiles/). All layers that use a vector source must specify a "source-layer" value. For vector tiles hosted by Mapbox, the URL value should be of the form `mapbox://mapid`.
+VectorSource切片必须为Mapbox矢量切片格式。使用矢量源的所有图层都必须指定“源图层”值。 对于由 Mapbox 托管的矢量瓦片，URL值的格式应为mapbox：// mapid。
+
 
 {{
 <AndroidActivityToggle
@@ -69,9 +70,9 @@ mapboxMap.getStyle {
 />
 }}
 
-When adding a new layer to a map style at runtime using a `VectorSource`, you must specify a [source layer](https://docs.mapbox.com/help/glossary/source-layer/) using the `setSourceLayer()` method (even when a tileset contains only one source layer). To see the available source layers in a tileset, visit [your Mapbox account's Tilesets page](https://studio.mapbox.com/tilesets) and click on the tileset to open the tileset information page, which lists all source layers. Identify which source layer's data you want to be attributed to the map's layer.
+使用VectorSource在运行时将新图层添加到地图样式时，必须使用setSourceLayer（）方法指定源图层（即使tileet仅包含一个源图层）。 要查看图块集中的可用源图层，请访问您的Mapbox帐户的图块集页面，然后单击图块集以打开图块信息页面，其中列出了所有源图层。 确定要将哪个源图层的数据归因于地图图层。
 
-This `setSourceLayer()` method is prohibited for all other source types including GeoJSON sources.
+所有其他来源类型（包括GeoJSON来源）均禁止使用setSourceLayer（）方法。
 
 
 {{
@@ -116,9 +117,9 @@ mapboxMap.getStyle {
 }}
 
 
-### Raster
+### 栅格
 
-`RasterSource` tiles can be added to your map if they are in TileJSON format. If hosted by Mapbox, the URL value should be of the form `mapbox://mapid`.
+如果栅格源tile为TileJSON格式，则可以将其添加到地图中。 如果由Mapbox托管，则URL值的格式应为mapbox：// mapid。
 
 {{
 <AndroidActivityToggle
@@ -154,7 +155,7 @@ mapboxMap.getStyle {
 
 ### GeoJson
 
-Adding a `GeoJsonSource` can be done in a few different ways. You can provide a URL to the GeoJSON raw data hosted online, provide a link to a GeoJSON file hosted locally inside of the app's assets folder, or you can build your own GeoJSON `FeatureCollection` directly inside of the code. The snippets of code below show the different ways to add a GeoJSON source to your map.
+添加GeoJsonSource可以通过几种不同的方式完成。 您可以提供指向在线托管的GeoJSON原始数据的URL，可以提供指向应用程序的Assets文件夹中本地托管的GeoJSON文件的链接，也可以直接在代码内部构建自己的GeoJSON FeatureCollection。 下面代码段展示了将GeoJSON数据添加到地图的不同方法。
 
 {{
   <RelatedPage
@@ -165,7 +166,7 @@ Adding a `GeoJsonSource` can be done in a few different ways. You can provide a 
 Create a GeoJSON feature collection dynamically and then add it as a map source.
 {{</RelatedPage>}}
 
-Add a GeoJSON source from a URL:
+从一个URL添加GeoJSON:
 
 {{
 <AndroidActivityToggle
@@ -203,7 +204,7 @@ mapboxMap.getStyle {
 />
 }}
 
-You can also load a locally stored GeoJSON file by using a URI
+您还可以使用URI加载本地存储的GeoJSON文件
 
 {{
 <AndroidActivityToggle
@@ -249,8 +250,7 @@ mapboxMap.getStyle {
 }}
 
 
-Create a GeoJSON `FeatureCollection` and add it to your map:
-
+创建一个GeoJSON FeatureCollection并将其添加到您的地图中：
 {{
 <AndroidActivityToggle
   id="create-feature-collection"
@@ -307,7 +307,7 @@ mapboxMap.getStyle {
 Read an explanation and view the code for using runtime styling to change a map's water color.
 {{</RelatedPage>}}
 
-A benefit of having your data inside a GeoJSON source is that you can update, remove, or add additional `Feature`s inside the source at any time, providing a solution to animating data in your map through the Runtime Styling API. For example, [an Android `ValueAnimator`](https://developer.android.com/reference/android/animation/ValueAnimator.html) can move a feature by updating its coordinates within the GeoJSON data.
+将数据包含在GeoJSON源中的好处是，您可以随时在源中更新，删除或添加其他功能，从而提供了一种通过运行时样式API在地图中对数据进行动画处理的解决方案。 例如，Android ValueAnimator可以通过在GeoJSON数据内更新其坐标来移动要素。
 
 ### Image
 
