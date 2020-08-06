@@ -12,16 +12,21 @@ language:
 
 The Maps SDK allows you to query map layers and return a list of [GeoJSON `Feature`s](/android/java/overview/geojson/#feature-and-featurecollection) that include information about the `Feature`'s geometry and properties. For example, a user can query map features by tapping the map and return any POIs that exist at that point as a GeoJSON `Feature`. Then, you can access the properties in the feature, including the POI's name as a `String`. Querying the map won't always return the information that you are looking for. It is possible to receive a `List<Feature>` with 0 features in it.
 
-## How querying works
+Maps SDK 为您提供查询地图层的工具以获取[GeoJSON`要素`](/android/java/overview/geojson/#feature-and-featurecollection)的列表，保存着`要素`的位置与属性信息。其中一个示例用法是，用户可以通过点击地图上的位置，查询显示地图上以GeoJSON`要素`形式存储的POI。随后可获得相关要素的属性信息，包括以String格式储存的 POI 名称等。需要注意的是，由于地图查询操作并不总是能够返回用户查找的信息，因此可能收到包含0 个要素的`要素列表`。
+
+## How querying works 地图查询方法
 
 You can query the map for features that exist at a `Point` or within a `BoundingBox`. Aside from layers, it is also possible to query the source for specific information matching your query regardless if the items are being displayed on the map.
+用户可以在地图上查询位于某一`点`或 特定`边界框 `内的要素。除显示的图层外，无论被查询的数据是否实际显示在地图上，用户都可以根据自身需求对其执行查询操作。
+
 
 Because features come from vector tile (or GeoJSON data that is converted to tiles internally), the query may split feature geometries or duplicate them across tile boundaries. As a result, features may appear multiple times in query results.
+要素主要来源为矢量切片（或内部转换为切片的GeoJSON数据），因此在查询过程中可能会出现要素被拆分、或在切片边界重复出现的情况，导致同一要素在查询结果中多次出现。
 
 For example, when querying by bounding box in an area that includes a highway spanning multiple tiles, the query will return a separate feature for every tile the highway spans. The geometry of each feature will be limited to the part of the highway that exists on that tile. Similarly, a point feature near a tile boundary may appear in multiple tiles due to tile buffering.
+例如，当在一个区域内通过边界框查询时，如果该区域包括一条横跨多个切片的公路，则查询将为该公路横跨的每个切片返回一个单独的要素。各要素的几何形状将被限制描述为这条公路在该切片内存在的部分。同样，由于切片的缓冲作用，切片边界附近的某些点要素可能会出现在相邻的多个切片中。
 
-
-## Query rendered features
+## Query rendered features 查询渲染的要素
 
 Use `queryRenderedFeatures` to return all map features currently rendered on the device. Features must be visible in the device's viewport **and** fully rendered before you can access them.
 
