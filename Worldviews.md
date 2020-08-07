@@ -9,15 +9,15 @@ language:
 - Kotlin
 ---
 
-In Mapbox services, the worldview data field is used to identify geographic features whose characteristics are defined differently by audiences belonging to various regional, cultural, or political groups.
+在Mapbox服务中，worldview数据字段用于标识地理特征，这些地理特征的特征由属于各个区域，文化或政治团体的受众不同地定义。
 
-Please see the [Mapbox glossary's `worldview` entry](https://docs.mapbox.com/help/glossary/worldview) for more information about currently available worldviews and required filters in the Mapbox Style Specification.
+请参阅 [Mapbox glossary's `worldview` entry](https://docs.mapbox.com/help/glossary/worldview) 以获取有关当前可用的worldview和Mapbox样式规范中所需过滤器的更多信息。
 
 {{
   <RelatedPage
     url="https://github.com/mapbox/mapbox-android-demo/blob/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/styles/KotlinWorldviewSwitchActivity.kt"
-    title="Toggle world views"
-    contentType="example">
+    title="切换worldview"
+    contentType="例">
 }}
-Cycle through worldviews to see how borders and other map data visually change.
+循环浏览切换worldview，来查看边界和其他地图数据的视觉变化。
 {{</RelatedPage>}}
