@@ -4,23 +4,23 @@ description: "The Mapbox Maps SDK for Android."
 contentType: guide
 ---
 
-Like the rest of the Mapbox developer experience, expressions are all about fine-grain control. Expressions enable you to dynamically style spatial data based on the data's properties. They offer you many flexible and powerful operations. You can style data with multiple feature properties at once, apply conditional logic, and manipulate data with arithmetic or string operations for a more sophisticated relationship between your data and how it is styled.
+就像其余的Mapbox开发人员经验一样，表达式都是关于细粒度控制的。 表达式使您可以根据数据的属性动态设置空间数据的样式。 它们为您提供了许多灵活而强大的操作。 您可以一次为具有多个要素属性的数据设置样式，应用条件逻辑，并通过算术或字符串操作来处理数据，以在数据与样式之间建立更复杂的关系。
 
-The value for any layout property, paint property, or filter may be specified as an expression. An expression defines a formula for computing the value of the property using the operators described below.
+可以将任何布局属性，绘画属性或过滤器的值指定为表达式。 表达式定义了一个公式，用于使用以下描述的运算符来计算属性的值。
 
-The set of expression operators provided by Mapbox GL includes:
+Mapbox GL提供的表达式运算符集包括：
 
-- Mathematical operators for performing arithmetic and other operations on numeric values
-- Logical operators for manipulating boolean values and making conditional decisions
-- String operators for manipulating strings
-- Data operators, providing access to the properties of source features
-- Camera operators, providing access to the parameters defining the current map view
+- 用于对数值执行算术和其他运算的数学运算符
+- 逻辑运算符，用于处理布尔值和做出条件决策
+- 字符串运算符
+- 数据运算符，提供对源要素属性的访问
+- 相机操作符，可访问定义当前地图视图的参数
 
-Expressions are represented as JSON arrays. The first element of an expression array is a string naming the expression operator. For example, "*" or "case". The next elements (if any) are the arguments to the expression. Each argument is either a literal value (a string, number, boolean, or null), or another expression array.
+表达式表示为JSON数组。 表达式数组的第一个元素是命名表达式运算符的字符串。 例如，“ *”或“ case”。 接下来的元素（如果有）是表达式的参数。 每个参数都是文字值（字符串，数字，布尔值或null）或另一个表达式数组。
 
-## Popular expressions
+## 流行表达
 
-While there are many expressions to choose from, you should first become familiar with the following expressions that will likely help you achieve your data-driven styling goals:
+尽管有很多表达式可供选择，但是您首先应该熟悉以下表达式，这些表达式可能会帮助您实现数据驱动的样式目标：
 
 - get
 - match
@@ -28,15 +28,15 @@ While there are many expressions to choose from, you should first become familia
 - equal
 - literal
 
-## Learning resources
+## 学习资源
 
-There are several Mapbox resources that can provide more guidance and examples for you to understand the concept of expressions.
+这里有多个Mapbox资源可以为您提供更多指导和示例，以帮助您理解表达式的概念。
 
-**Javadocs** – [The `Expressions` Java class in the Mapbox Maps SDK for Android](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/style/expressions/Expression.java) offers explanations and code samples to explain how each expression method should be used.
+**Javadocs** – [The `Expressions` Java class in the Mapbox Maps SDK for Android](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/style/expressions/Expression.java) 提供了说明和代码示例，以解释应如何使用每种表达方法。
 
-**The Mapbox Android demo app** – [The app's data-driven styling folder](https://github.com/mapbox/mapbox-android-demo/tree/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/dds) has many examples that use expressions in various ways. Don't have the app? [Click here to download it](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo&hl=en).
+**The Mapbox Android demo app** – [The app's data-driven styling folder](https://github.com/mapbox/mapbox-android-demo/tree/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/dds) 有很多示例以各种方式使用表达式。没有该应用程序？ [Click here to download it](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo&hl=en).
 
 
-**Introductory blog post** – [Read our blog post that was published to introduce expressions when they were released for Mapbox GL JS](https://blog.mapbox.com/announcing-expressions-in-gl-js-a72b55d0a6af). The post doesn't have examples/syntax related for the Android platform, but it is helpful for understanding the concept of expressions and _why_ Mapbox introduced expressions in the first place.
+**Introductory blog post** – [Read our blog post that was published to introduce expressions when they were released for Mapbox GL JS](https://blog.mapbox.com/announcing-expressions-in-gl-js-a72b55d0a6af). 这篇文章没有与Android平台相关的示例/语法，但对理解表达式的概念以及Mapbox为何首先引入表达式很有帮助。
 
-**Style specification** – Want the minute details about each expression? [The Mapbox Style Specification](https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions) has them.
+**Style specification** – 想要有关每个表达式的详细信息吗？ [The Mapbox Style Specification](https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions) has them.
