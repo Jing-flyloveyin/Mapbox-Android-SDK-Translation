@@ -16,14 +16,14 @@ language:
 {{
   <RelatedPage
     url="https://docs.mapbox.com/mapbox-gl-js/style-spec/"
-    title="Mapbox Style Specification"
-    contentType="guide">
+    title="Mapbox样式规范"
+    contentType="指南">
 }}
-View a full list of the features in runtime styling not specific to Android.
+查看运行时样式中特定于Android的功能的完整列表。
 {{</RelatedPage>}}
 
-{{<Note theme="warning" title="Annotation Plugin for Android">}}
-Sources and layers provide nimble options for customizing the look of a Mapbox map and the data displayed on the map. The [Mapbox Annotation Plugin for Android](/android/plugins/overview/annotation/) provides a simplified system for interacting with and customizing Mapbox map layers.
+{{<Note theme="warning" title="适用于Android的注释插件">}}
+S源和图层提供了灵活的选项，用于自定义Mapbox地图的外观和地图上显示的数据。[适用于Android的注释插件](/android/plugins/overview/annotation/) 提供了用于与Mapbox地图图层进行交互和自定义的简化系统。
 {{</Note>}}
 
 
@@ -47,7 +47,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
   @Override
   public void onStyleLoaded(@NonNull Style style) {
 
-   // Adding a vector source layer
+   //添加矢量源图层
 
    VectorSource vectorSource = new VectorSource("vector-source", "YOUR_TILESET_ID");
 
@@ -60,7 +60,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 kotlin={`
 mapboxMap.getStyle {
 
-	// Adding a vector source layer
+	// 添加矢量源图层
 	val vectorSource = VectorSource("vector-source", "tileset-id")
 	
 	it.addSource(vectorSource)
@@ -130,7 +130,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
   @Override
   public void onStyleLoaded(@NonNull Style style) {
 
-	// Adding a raster source layer
+	// 添加栅格源图层
 	
 	RasterSource rasterSource = new RasterSource("raster-source", "mapbox://mapbox.u8yyzaor");
 	
@@ -142,7 +142,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 kotlin={`
 mapboxMap.getStyle {
 
-	// Adding a raster source layer
+	// 添加栅格源图层
 	val rasterSource = RasterSource("raster-source", "mapbox://mapbox.u8yyzaor")
 	
 	it.addSource(rasterSource)
@@ -260,12 +260,12 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
   @Override
   public void onStyleLoaded(@NonNull Style style) {
 
-	// Create a list to store our line coordinates.
+	// 创建一个列表来存储我们的线坐标。
 	List routeCoordinates = new ArrayList<Point>();
 	routeCoordinates.add(Point.fromLngLat(-118.394391, 33.397676));
 	routeCoordinates.add(Point.fromLngLat(-118.370917, 33.391142));
 	
-	// Create the LineString from the list of coordinates and then make a GeoJSON FeatureCollection so that you can add the line to our map as a layer.
+	// 从坐标列表中创建LineString，然后创建一个GeoJSON FeatureCollection，以便可以将线作为图层添加到我们的地图中。
 	
 	LineString lineString = LineString.fromLngLats(routeCoordinates);
 	
@@ -280,12 +280,12 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 kotlin={`
 mapboxMap.getStyle {
 
-	// Create a list to store our line coordinates.
+	// 创建一个列表来存储我们的线坐标。
 	val routeCoordinates = ArrayList<Point>()
 	routeCoordinates.add(Point.fromLngLat(-118.394391, 33.397676))
 	routeCoordinates.add(Point.fromLngLat(-118.370917, 33.391142))
 	
-	// Create the LineString from the list of coordinates and then make a GeoJSON FeatureCollection so that you can add the line to our map as a layer.
+	// 从坐标列表中创建LineString，然后创建一个GeoJSON FeatureCollection，以便可以将线作为图层添加到我们的地图中。
 	
 	val lineString = LineString.fromLngLats(routeCoordinates)
 	
@@ -322,17 +322,17 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
   @Override
   public void onStyleLoaded(@NonNull Style style) {
 
-    // Set the latitude and longitude coordinates of the image's four corners
+    // 设置图像四个角的纬度和经度坐标
     LatLngQuad quad = new LatLngQuad(
       new LatLng(46.437, -80.425),
       new LatLng(46.437, -71.516),
       new LatLng(37.936, -71.516),
       new LatLng(37.936, -80.425));
     
-    // Add the source to the map layer
+    // 将源添加到地图图层
     style.addSource(new ImageSource(ID_IMAGE_SOURCE_ID, quad, DRAWABLE_IMAGE));
     
-    // Add layer
+    // 添加图层
     RasterLayer layer = new RasterLayer(ID_IMAGE_LAYER, IMAGE_SOURCE_ID);
     style.addLayer(layer);
 
@@ -343,7 +343,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 kotlin={`
 mapboxMap.getStyle {
 
-	// Set the latitude and longitude coordinates of the image's four corners
+	// 设置图像四个角的纬度和经度坐标
 	val quad = LatLngQuad(
 	        LatLng(46.437, -80.425),
 	        LatLng(46.437, -71.516),
@@ -352,7 +352,7 @@ mapboxMap.getStyle {
 	
 	it.addSource(ImageSource(ID_IMAGE_SOURCE, quad, DRAWABLE_IMAGE_HERE))
 	
-	// Add layer
+	// 添加图层
 	val layer = RasterLayer(ID_IMAGE_LAYER, ID_IMAGE_SOURCE)
 	it.addLayer(layer)
 }
@@ -448,13 +448,13 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 	RasterDemSource rasterDemSource = new RasterDemSource("source-id", "mapbox://mapbox.terrain-rgb");
 	style.addSource(rasterDemSource);
 	
-	// Create hillshade layer source to map
+	// 创建山体阴影图层源
 	HillshadeLayer hillshadeLayer = new HillshadeLayer("hillshade-layer-id", "source-id").withProperties(
 	  hillshadeHighlightColor(Color.parseColor(HILLSHADE_HIGHLIGHT_COLOR)),
 	  hillshadeShadowColor(Color.BLACK)
 	);
 	
-	// Add hillshade layer to map
+	// 在地图上添加山体阴影图层
 	style.addLayer(hillshadeLayer);
 
   }
@@ -467,13 +467,13 @@ mapboxMap.getStyle {
 	val rasterDemSource = RasterDemSource("source-id", "mapbox://mapbox.terrain-rgb")
 	style.addSource(rasterDemSource)
 	
-	// Create hillshade layer source to map
+	// 创建山体阴影图层源
 	val hillshadeLayer = HillshadeLayer("hillshade-layer-id", "source-id").withProperties(
 	        hillshadeHighlightColor(Color.parseColor(HILLSHADE_HIGHLIGHT_COLOR)),
 	        hillshadeShadowColor(Color.BLACK)
 	)
 	
-	// Add hillshade layer to map
+	// 在地图上添加山体阴影图层
 	it.addLayer(hillshadeLayer)
 }
 `}
@@ -506,7 +506,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
     BackgroundLayer backgroundLayer = new BackgroundLayer("background-layer");
     backgroundLayer.setProperties(PropertyFactory.backgroundColor(Color.BLUE));
     
-    // Add background layer to map
+    // 在地图上添加背景图层
     style.addLayer(backgroundLayer);
 
   }
@@ -519,7 +519,7 @@ mapboxMap.getStyle {
 	val backgroundLayer = BackgroundLayer("background-layer")
 	backgroundLayer.setProperties(PropertyFactory.backgroundColor(Color.BLUE))
 	
-	// Add background layer to map
+	// 在地图上添加背景图层
 	it.addLayer(backgroundLayer)
 }
 `}
@@ -544,7 +544,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
     FillLayer fillLayer = new FillLayer("layer-id", "source-id");
     fillLayer.setProperties(PropertyFactory.fillColor(Color.GREEN));
     
-    // Add fill layer to map
+    // 在地图上添加填充层
     style.addLayer(fillLayer);
 
   }
@@ -557,7 +557,7 @@ mapboxMap.getStyle {
     val fillLayer = FillLayer("layer-id", "source-id")
     fillLayer.setProperties(PropertyFactory.fillColor(Color.GREEN))
     
-    // Add fill layer to map
+    //在地图上添加填充层
     it.addLayer(fillLayer)
 }
 `}
@@ -598,8 +598,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 
 	LineLayer lineLayer = new LineLayer("line-layer", "line-source");
 	
-	// The layer properties for our line. This is where you can make the line
-	dotted, set the color, etc.
+	// 我们得线的图层属性。 在这里，您可以使线成为虚线，设置颜色等。
 	lineLayer.setProperties(
 	  PropertyFactory.lineDasharray(new Float[]{0.01f, 2f}),
 	  PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
@@ -618,7 +617,7 @@ mapboxMap.getStyle {
 
 	val lineLayer = LineLayer("line-layer", "line-source")
 	
-	// The layer properties for our line. This is where you can make the line dotted, set the color, etc.
+	// 我们得线的图层属性。 在这里，您可以使线成为虚线，设置颜色等。
 	lineLayer.setProperties(
 	        PropertyFactory.lineDasharray(arrayOf(0.01f, 2f)),
 	        PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
@@ -706,7 +705,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
     symbolLayer.setProperties(
         iconImage("SYMBOL_LAYER_ICON_ID"),
         iconAnchor(Property.ICON_ANCHOR_BOTTOM),
-        // or iconOffset(new Float[] {0f, -9f})
+        // 或者 iconOffset(new Float[] {0f, -9f})
     );
     
     style.addLayer(symbolLayer);
@@ -723,7 +722,7 @@ mapboxMap.getStyle {
 	symbolLayer.setProperties(
 		iconImage("SYMBOL_LAYER_ICON_ID"),
 		iconAnchor(Property.ICON_ANCHOR_BOTTOM),
-		// or iconOffset(arrayOf(0f, -9f))
+		// 或者 iconOffset(arrayOf(0f, -9f))
 	)
 	
 	it.addLayer(symbolLayer)
@@ -782,7 +781,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
   @Override
   public void onStyleLoaded(@NonNull Style style) {
 
-		// Adding a raster source layer
+		// 添加栅格源图层
 		RasterSource satelliteRasterSource = new RasterSource("satellite-raster-source", "mapbox://mapbox.satellite",512);
 	
 		style.addSource(satelliteRasterSource);	}
@@ -792,7 +791,7 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 kotlin={`
 mapboxMap.getStyle {
 
-	// Adding a raster source layer
+	// 添加栅格源图层 
 	val satelliteRasterSource = RasterSource("satellite-raster-source", "mapbox://mapbox.satellite", 512)
 	
 	it.addSource(satelliteRasterSource)
@@ -1107,9 +1106,9 @@ mapboxMap.getStyle(new Style.OnStyleLoaded() {
 	if (geoJsonSource != null) {
 	geoJsonSource.setGeoJson(newFeatureCollectionFromFeatureList);
 	
-	// or geoJsonSource.setGeoJson(newFeature);
+	// 或者 geoJsonSource.setGeoJson(newFeature);
 	
-	// or geoJsonSource.setGeoJson(newLineString);
+	// 或者 geoJsonSource.setGeoJson(newLineString);
 	
 	}
 });
