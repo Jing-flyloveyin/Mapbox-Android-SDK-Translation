@@ -37,7 +37,7 @@ Use `queryRenderedFeatures` to return all map features currently rendered on the
 
 `queryRenderedFeatures` only accepts a screen pixel value instead of `LatLng`, so in many cases you'll need convert screen position to geographic position. In the example below, when the map is clicked it provides a `LatLng` that is used to get the features at that point on the map.
 
-查询地图只接受屏幕像素值而不是 `LatLng`。因此您可能时常需要对`LatLng`事先进行转换。在以下代码段中，单击地图将提供一个`LatLng`，我们将其用来查询地图并获取该位置的属性。
+查询地图只接受屏幕像素值而不是 `LatLng`。因此可能时常需要对`LatLng`事先进行转换。在以下代码段中，单击地图将提供一个`LatLng`数值，我们将其用来查询地图并获取该位置的属性。
 
 {{
 <AndroidActivityToggle
@@ -135,11 +135,16 @@ val features = mapboxMap.queryRenderedFeatures(pixel,"LAYER-ID")
 Query the rendered map to get the properties at a specific location.
 {{</RelatedPage>}}
 
-### Query inside a bounding box
+### Query inside a bounding box 查询边界框内的要素
 
 To query the map for `Feature`s in an area, pass in a bounding box using a `RectF` object. This can either come from a Android `View` displayed to the user on top of the map or four coordinates that are shown within the viewport.
 
+如需在地图上查询某一区域内的 `要素`，可通过使用 `RectF`对象传递边界框来实现。边界框既可以来自于地图顶部显示给用户的Android`视图`，也可以是视区域内显示的四个坐标。
+
+
 The example below shows how to use four coordinates to create a `RectF`. The `RectF` object is passed into `queryRenderedFeatures()`.
+
+以下代码段显示如何获取四个坐标，将它们转换为新的`RectF`对象。这个`RectF`对象随后将被传递到 `queryRenderedFeatures()`中。
 
 {{
 <AndroidActivityToggle
@@ -176,11 +181,16 @@ mapboxMap.queryRenderedFeatures(rectF)
 Query the rendered map to get the features found inside an Android view.
 {{</RelatedPage>}}
 
-## Query source features
+## Query source features 查询数据源的要素
 
 `querySourceFeatures()` returns all features that match the query parameters regardless of whether or not the feature is currently rendered on the map. The domain of the query includes all currently-loaded vector tiles and GeoJSON source tiles. This function does not check tiles outside of the visible viewport.
 
+使用 `querySourceFeatures()`函数查询后，所有与查询参数匹配的要素都将被返回，无论它们当前是否由被渲染可见。查询的域包括所有当前加载的矢量切片和 GeoJSON 源切片。此函数不会检索当前可见视区之外的切片。
+
+
 To query a source, you must pass in the query parameters as a set of `Filters` and only the features that satisfy the statement will be added to the returning list of features. In the example below, the map style contains a GeoJSON source called `population-source`, which contains a `population` property for each feature. The query below limits the features returned to those that have a population greater than 100,000.
+
+若要查询数据源，您必须将查询参数传递为一组`Filters`，只有满足该查询参数表述的要素才会添加至返回的要素列表中。例如，在以下代码段中，地图样式包含名为`population-source`的 GeoJSON 源，它包含了每个要素的`population`属性。以下查询希望实现仅返回 population属性大于100,000的要素列表。
 
 {{
 <AndroidActivityToggle
