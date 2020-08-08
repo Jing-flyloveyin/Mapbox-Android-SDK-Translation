@@ -17,25 +17,27 @@ Maps SDK 为您提供查询地图层的工具以获取[GeoJSON`要素`](/android
 ## How querying works 地图查询方法
 
 You can query the map for features that exist at a `Point` or within a `BoundingBox`. Aside from layers, it is also possible to query the source for specific information matching your query regardless if the items are being displayed on the map.
-
-用户可以在地图上查询位于某一`点`或 特定`边界框 `内的要素。除显示的图层外，无论被查询的数据是否实际显示在地图上，用户都可以根据自身需求对其执行查询操作。
+您可以在地图上查询位于某一`点`或 特定`边界框 `内的要素。除显示的图层外，无论被查询的数据是否实际显示在地图上，您都可以根据自身需求对其执行查询操作。
 
 
 Because features come from vector tile (or GeoJSON data that is converted to tiles internally), the query may split feature geometries or duplicate them across tile boundaries. As a result, features may appear multiple times in query results.
-
 要素主要来源为矢量切片（或内部转换为切片的GeoJSON数据），因此在查询过程中可能会出现要素被拆分、或在切片边界重复出现的情况，导致同一要素在查询结果中多次出现。
 
 For example, when querying by bounding box in an area that includes a highway spanning multiple tiles, the query will return a separate feature for every tile the highway spans. The geometry of each feature will be limited to the part of the highway that exists on that tile. Similarly, a point feature near a tile boundary may appear in multiple tiles due to tile buffering.
-
 例如，当在一个区域内通过边界框查询时，如果该区域包括一条横跨多个切片的公路，则查询将为该公路横跨的每个切片返回一个单独的要素。各要素的几何形状将被限制描述为这条公路在该切片内存在的部分。同样，由于切片的缓冲作用，切片边界附近的某些点要素可能会出现在相邻的多个切片中。
 
 ## Query rendered features 查询渲染的要素
 
 Use `queryRenderedFeatures` to return all map features currently rendered on the device. Features must be visible in the device's viewport **and** fully rendered before you can access them.
 
+使用`查询渲染的要素`功能可以返回当前设备上渲染的所有地图要素。查询需要满足的条件包括，要素必须在设备的视区中可见，**以及**在完全渲染后才能够被访问查询。
+
+
 ### Query at a point
 
 `queryRenderedFeatures` only accepts a screen pixel value instead of `LatLng`, so in many cases you'll need convert screen position to geographic position. In the example below, when the map is clicked it provides a `LatLng` that is used to get the features at that point on the map.
+
+查询地图只接受屏幕像素值而不是 `LatLng`。因此您可能时常需要对`LatLng`事先进行转换。在以下代码段中，单击地图将提供一个`LatLng`，我们将其用来查询地图并获取该位置的属性。
 
 {{
 <AndroidActivityToggle
