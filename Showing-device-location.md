@@ -21,15 +21,24 @@ Showing the user's current location as a map annotation is a popular and often c
 
 {{<Note 小贴士>}}
 This `LocationComponent` has replaced the now-deprecated Location Layer Plugin. The `LocationComponent` is integrated into the Maps SDK for Android so that you don't need to add any additional dependencies. It brings the same set of functionality that you were used to with the plugin.
+
+`LocationComponent`目前已经取代了已废弃的Location Layer Plugin。`LocationComponent`已被集成到Android地图SDK中，因此您无需添加任何额外的依赖关系。它带来了与插件相同的功能集。
 {{</Note 小贴士>}}
 
-## Requesting location permissions
+## Requesting location permissions 请求位置权限
 
 You'll need to request the Android-system location permission before using the `LocationComponent`. If you build your Android project targeting API level 23 or higher your application will need to request permissions during runtime. Handling this directly in your activity produces boilerplate code and can often be hard to manage. [Read more about using the Mapbox Core Library for Android's `PermissionsManager`](/android/core/overview/#permissionsmanager) class.
 
-## Customization
+在使用`LocationComponent`之前，您需要请求Android系统的位置权限。如果您构建的Android项目的目标是API级别23或更高，您的应用程序将需要在运行时请求权限。若您在活动中直接处理这个问题会产生模板代码，并且通常很难管理。[阅读更多关于使用Mapbox Core Library for Android的`PermissionsManager`](/android/core/overview/#permissionsmanager)类。
+
+
+## Customization 定制化
 
 The `LocationComponent` can be customized in many different ways. You can set the image drawables, opacities, colors, and more. [See a full list of XML attributes for styling the `LocationComponent` via XML](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/res-public/values/public.xml#L109-L152). [The `LocationComponentOptions` class](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java) can be used if you prefer to customize the `LocationComponent` programatically. Create a [LocationComponentOptions](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java) object and then use whichever `LocationComponentOptions.builder()`'s various methods you'd like. Then use the built `LocationComponentOptions` object as parameter in `LocationComponentActivationOptions#locationComponentOptions()` or by passing it through as a parameter of the `LocationComponent#applyStyle()` method at a later time.
+
+`LocationComponent`可以通过多种方式进行定制。您可以设置图像的可绘制性、不透明度、颜色等。[查看XML属性的完整列表，从而通过XML对`LocationComponent`进行样式设置](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/res-public/values/public.xml#L109-L152)。如果您喜欢以程序方式定制`LocationComponent`，可以使用[`LocationComponentOptions`类](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java)。创建一个[LocationComponentOptions](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java)对象，然后使用`LocationComponentOptions.builder()`的各种方法。然后在`LocationComponentActivationOptions#locationComponentOptions()`中使用建立的`LocationComponentOptions`对象作为参数，或者在以后在使用`LocationComponent#applyStyle()`方法时将其作为参数。
+
+通过www.DeepL.com/Translator（免费版）翻译
 
 {{
 <AndroidActivityToggle
