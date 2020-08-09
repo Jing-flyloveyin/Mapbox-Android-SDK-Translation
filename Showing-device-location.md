@@ -18,9 +18,7 @@ language:
 
 
 {{<Note>}}
-
 `LocationComponent`目前已经取代了已废弃的Location Layer Plugin。`LocationComponent`已被集成到Android地图SDK中，因此您无需添加任何额外的依赖关系。它带来了与插件相同的功能集。
-
 {{</Note>}}
 
 ## 请求位置权限
@@ -107,9 +105,7 @@ locationComponent.activateLocationComponent(locationComponentActivationOptions)
 | mapbox_pulsingLocationCircleInterpolator | 设置脉冲圆的插值器动画。
 
 {{<Note>}}
-
 `mapbox_compassAnimationEnabled`和 `mapbox_accuracyAnimationEnabled`选项是可用的，因为 `LocationComponent`的动画平滑会对设备的电池消耗水平产生重大影响。作为设备上唯一运行的动画的情况下，禁用罗盘和精度的动画平滑可以显著降低CPU的使用量。
-
 {{</Note>}}
 
 为`LocationComponent`添加一个脉冲圈是另一个样式选项。脉冲圈会在一定时间内扩大其半径，使`LocationComponent`看起来就像一个正在发射能量的信标。当设备在地图上静止或移动时，这个UI可以使`LocationComponent`和您的地图带更具吸引力和活力。
