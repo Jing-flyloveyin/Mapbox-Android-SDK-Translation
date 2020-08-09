@@ -322,7 +322,6 @@ locationComponent.isLocationComponentEnabled = true
 
 ## `RenderMode`
 
-The `RenderMode` class contains preset options for the device location image.
 `RenderMode`类包含设备位置图像的预设选项。
 
 {{
@@ -337,7 +336,7 @@ locationComponent?.renderMode = RenderMode.NORMAL
  />
 }}
 
-There are three types of `RenderMode` options:
+共有3种 `RenderMode`可供选择。
 
 | `RenderMode` | 描述                                                  |
 | ------------ | ------------------------------------------------------------ |
@@ -419,7 +418,7 @@ locationComponent?.cameraMode = CameraMode.TRACKING
 
 ## 追踪时的手势阈值
 
-`LocationComponent`已实现与[Mapbox Gestures for Android库](https://docs.mapbox.com/android/maps/overview/gestures/)的集成。该组件将调整camera的焦点并增加阈值，以实现camera操作，如放大和缩小，而不破坏追踪。启用这个功能需要清晰的主动选择，因为它将覆盖用`MapboxMap#setGesturesManager(AndroidGesturesManager, boolean, boolean)`设置的自定义手势检测实现。
+`LocationComponent`已实现与[Mapbox Gestures for Android library](https://docs.mapbox.com/android/maps/overview/gestures/)的集成。该组件将调整camera的焦点并增加阈值，以实现camera操作，如放大和缩小，而不破坏追踪。启用这个功能需要清晰的主动选择，因为它将覆盖用`MapboxMap#setGesturesManager(AndroidGesturesManager, boolean, boolean)`设置的自定义手势检测实现。
 
 要启用该功能，请使用`LocationComponentOptions#trackingGesturesManagement(boolean)`。
 
