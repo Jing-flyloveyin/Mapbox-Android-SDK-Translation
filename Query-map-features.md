@@ -1,6 +1,6 @@
 ---
-title: "Query map features"
-description: "Official documentation about querying map features within the Mapbox Maps SDK for Android. Discover how to retrieve information about a selected place of interest."
+title: "查询地图要素"
+description: "关于在Android版Mapbox Map SDK中查询地图功能的官方文档。了解如何检索所选感兴趣地点的信息。"
 prependJs:
   - "import RelatedPage from '@mapbox/dr-ui/related-page';"
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
@@ -166,7 +166,7 @@ mapboxMap.queryRenderedFeatures(rectF)
 Query the rendered map to get the features found inside an Android view.
 {{</RelatedPage>}}
 
-## Query source features 查询数据源的要素
+## 查询数据源的要素
 
 使用 `querySourceFeatures()`函数查询后，所有与查询参数匹配的要素都将被返回，无论它们当前是否已被渲染可见。查询的域包括所有当前加载的矢量切片和 GeoJSON 源切片。此函数不会检索当前可见视区之外的切片。
 
