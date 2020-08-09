@@ -37,8 +37,6 @@ The `LocationComponent` can be customized in many different ways. You can set th
 
 `LocationComponent`可以通过多种方式进行定制。您可以设置图像的可绘制性、不透明度、颜色等。[查看XML属性的完整列表，从而通过XML对`LocationComponent`进行样式设置](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/res-public/values/public.xml#L109-L152)。如果您喜欢以程序方式定制`LocationComponent`，可以使用[`LocationComponentOptions`类](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java)。创建一个[LocationComponentOptions](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java)对象，然后使用`LocationComponentOptions.builder()`的各种方法。然后在`LocationComponentActivationOptions#locationComponentOptions()`中使用建立的`LocationComponentOptions`对象作为参数，或者在以后在使用`LocationComponent#applyStyle()`方法时将其作为参数。
 
-通过www.DeepL.com/Translator（免费版）翻译
-
 {{
 <AndroidActivityToggle
   id="location-component-customization"
@@ -84,9 +82,10 @@ locationComponent.activateLocationComponent(locationComponentActivationOptions)
     contentType="example">
 }}
 Use `LocationComponent` options to style the device location icon.
+使用 `LocationComponent`选项来设置设备位置图标的样式。
 {{</RelatedPage>}}
 
-### Active styling options
+### Active styling options 激活样式选项
 
 {{
 <AppropriateImage imageId="maps-overview-location-component-active" className="block mx-auto pt18 wmax300" />
@@ -94,20 +93,20 @@ Use `LocationComponent` options to style the device location icon.
 
 | XML Option                      | Explanation                                                  |
 | ------------------------------- | ------------------------------------------------------------ |
-| mapbox_foregroundDrawable       | Drawable image that would replace the blue circle.           |
-| mapbox_foregroundTintColor      | The blue circle's color.                                     |
-| mapbox_backgroundDrawable       | Drawable image that would replace the white circle.          |
-| mapbox_backgroundTintColor      | The white circle.                                            |
-| mapbox_bearingDrawable          | Drawable image that would replace the blue triangle.         |
-| mapbox_bearingTintColor         | The blue triangle.                                           |
-| mapbox_navigationDrawable       | Drawable image used for the navigation state icon.           |
-| mapbox_accuracyAlpha            | The larger light blue circle surrounding the device location icon. |
-| mapbox_accuracyColor            | Color of the larger light blue circle surrounding the device location icon. |
-| mapbox_elevation                | The amount of space between the map and the device location icon. The elevation will adjust the size of the shadow as seen underneath the white circle. Passing `0f` as the method parameter will remove the shadow effect. |
-| mapbox_compassAnimationEnabled  | Enable or disable smooth animation of compass values for the blue triangle. |
-| mapbox_accuracyAnimationEnabled | Enable or disable smooth animation of the larger light blue accuracy circle surrounding the device location icon. |
-| mapbox_pulsingLocationCircleEnabled | Enable or disable the pulsing circle.
-| mapbox_pulsingLocationCircleFadeEnabled | Enable or disable fading of the pulsing circle. If it fades, the circle's opacity decreases as its radius increases.
+| mapbox_foregroundDrawable       | 运用可绘制的图像，取代蓝色圆圈。                                   |
+| mapbox_foregroundTintColor      | 蓝色圆圈的颜色。                                    |
+| mapbox_backgroundDrawable       | 运用可绘制的图像，取代白色圆环。          |
+| mapbox_backgroundTintColor      | 白色圆环的颜色。                                            |
+| mapbox_bearingDrawable          | 运用可绘制的图像，取代蓝色三角。     |
+| mapbox_bearingTintColor         | 蓝色三角的颜色。                                          |
+| mapbox_navigationDrawable       | 运用可绘制的图像，代表导航状态的图标。          |
+| mapbox_accuracyAlpha            | 设备位置图标周围较大的浅蓝色圆圈。 |
+| mapbox_accuracyColor            | 设备位置图标周围较大的淡蓝色圆圈的颜色。 |
+| mapbox_elevation                | 地图和设备位置图标之间的空间大小。仰角将调整白色圆圈下阴影的大小。传递`0f`作为方法参数将移除阴影效果。|
+| mapbox_compassAnimationEnabled  | Enable or disable smooth animation of compass values for the blue triangle.启用或禁用蓝色三角形罗盘的平滑动画。 |
+| mapbox_accuracyAnimationEnabled | 启用或禁用设备位置图标周围较大的淡蓝色精度圆圈的平滑动画。 |
+| mapbox_pulsingLocationCircleEnabled | 启用或禁用脉动圈。 |
+| mapbox_pulsingLocationCircleFadeEnabled | 启用或禁用脉冲圆的淡化。如果淡化，圆的不透明度会随着半径的增大而降低。
 | mapbox_pulsingLocationCircleColor | Sets the color of the pulsing circle.
 | mapbox_pulsingLocationCircleDuration | Sets the number of milliseconds it takes for a single pulse of the pulsing circle.
 | mapbox_pulsingLocationCircleRadius | The maximum radius that a single pulse should expand the pulsing circle to.
