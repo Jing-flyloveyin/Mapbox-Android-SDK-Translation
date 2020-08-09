@@ -80,7 +80,7 @@ override fun onMapClick(point: LatLng) {
 }}
 
 
-Querying rendered features all layers:
+查询所有图层的渲染要素:
 
 {{
 <AndroidActivityToggle
@@ -97,7 +97,7 @@ val features = mapboxMap.queryRenderedFeatures(pixel)
 />
 }}
 
-Querying rendered features in a specific layer:
+查询某一图层的渲染要素:
 
 {{
 <AndroidActivityToggle
@@ -122,7 +122,7 @@ val features = mapboxMap.queryRenderedFeatures(pixel,"LAYER-ID")
     title="Query at point"
     contentType="example">
 }}
-Query the rendered map to get the properties at a specific location.
+查询已渲染的地图，以获得特定位置的属性信息。
 {{</RelatedPage>}}
 
 ### 基于边界框的查询
