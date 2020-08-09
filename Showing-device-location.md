@@ -103,15 +103,15 @@ Use `LocationComponent` options to style the device location icon.
 | mapbox_accuracyAlpha            | 设备位置图标周围较大的浅蓝色圆圈。 |
 | mapbox_accuracyColor            | 设备位置图标周围较大的淡蓝色圆圈的颜色。 |
 | mapbox_elevation                | 地图和设备位置图标之间的空间大小。仰角将调整白色圆圈下阴影的大小。传递`0f`作为方法参数将移除阴影效果。|
-| mapbox_compassAnimationEnabled  | Enable or disable smooth animation of compass values for the blue triangle.启用或禁用蓝色三角形罗盘的平滑动画。 |
+| mapbox_compassAnimationEnabled  | 启用或禁用蓝色三角形罗盘的平滑动画。 |
 | mapbox_accuracyAnimationEnabled | 启用或禁用设备位置图标周围较大的淡蓝色精度圆圈的平滑动画。 |
 | mapbox_pulsingLocationCircleEnabled | 启用或禁用脉动圈。 |
 | mapbox_pulsingLocationCircleFadeEnabled | 启用或禁用脉冲圆的淡化。如果淡化，圆的不透明度会随着半径的增大而降低。
-| mapbox_pulsingLocationCircleColor | Sets the color of the pulsing circle.
-| mapbox_pulsingLocationCircleDuration | Sets the number of milliseconds it takes for a single pulse of the pulsing circle.
-| mapbox_pulsingLocationCircleRadius | The maximum radius that a single pulse should expand the pulsing circle to.
-| mapbox_pulsingLocationCircleAlpha | Sets the opacity of the pulsing circle. The expected range is 0 to 1. An opacity of 1 makes the layer fully opaque.
-| mapbox_pulsingLocationCircleInterpolator | Sets the pulsing circle's interpolator animation.
+| mapbox_pulsingLocationCircleColor | 设置脉动圈的颜色。
+| mapbox_pulsingLocationCircleDuration |设置脉冲圆的单次脉冲所需的毫秒数。
+| mapbox_pulsingLocationCircleRadius | 单个脉冲应扩大脉动圈的最大半径。
+| mapbox_pulsingLocationCircleAlpha | 设置脉动圈的不透明度，范围为0到1。不透明度为1时，图层将完全不透明。
+| mapbox_pulsingLocationCircleInterpolator | 设置脉冲圆的插值器动画。
 
 {{<Note>}}
 
