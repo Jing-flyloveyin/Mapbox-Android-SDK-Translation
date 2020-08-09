@@ -16,7 +16,7 @@ language:
 
 Showing the user's current location as a map annotation is a popular and often critical feature of location-based apps. The Maps SDK's `LocationComponent` makes use of the Maps SDK's [runtime styling capabilities](/android/maps/overview/data-driven-styling/) to display the device location icon within the map itself rather than on top as an Android view. Mapbox map layers and layer styling give you precise control over how you show a device's location on the map.
 
-将用户的当前位置显示为地图标注是基于位置的应用程序的一个关键且高频使用的功能。Maps SDK的`LocationComponent`利用Maps SDK的[运行时样式功能](/android/maps/overview/data-driven-styling/)在地图本身中显示设备位置图标，而不是作为Android视图显示在顶部。Mapbox地图图层和图层样式让您可以对在地图上显示设备的位置进行进行精确控制。
+将用户的当前位置显示为地图标注是基于位置的应用程序一个高频使用的关键功能。Maps SDK的`LocationComponent`利用Maps SDK的[运行时样式功能](/android/maps/overview/data-driven-styling/)在地图本身中显示设备位置图标，而不是作为Android视图显示在顶部。Mapbox地图图层和图层样式让您可以对在地图上显示设备的位置进行进行精确控制。
 
 
 {{<Note 小贴士>}}
@@ -105,21 +105,25 @@ Use `LocationComponent` options to style the device location icon.
 | mapbox_elevation                | 地图和设备位置图标之间的空间大小。仰角将调整白色圆圈下阴影的大小。传递`0f`作为方法参数将移除阴影效果。|
 | mapbox_compassAnimationEnabled  | 启用或禁用蓝色三角形罗盘的平滑动画。 |
 | mapbox_accuracyAnimationEnabled | 启用或禁用设备位置图标周围较大的淡蓝色精度圆圈的平滑动画。 |
-| mapbox_pulsingLocationCircleEnabled | 启用或禁用脉动圈。 |
+| mapbox_pulsingLocationCircleEnabled | 启用或禁用脉冲圈。 |
 | mapbox_pulsingLocationCircleFadeEnabled | 启用或禁用脉冲圆的淡化。如果淡化，圆的不透明度会随着半径的增大而降低。
-| mapbox_pulsingLocationCircleColor | 设置脉动圈的颜色。
+| mapbox_pulsingLocationCircleColor | 设置脉冲圈的颜色。
 | mapbox_pulsingLocationCircleDuration |设置脉冲圆的单次脉冲所需的毫秒数。
-| mapbox_pulsingLocationCircleRadius | 单个脉冲应扩大脉动圈的最大半径。
-| mapbox_pulsingLocationCircleAlpha | 设置脉动圈的不透明度，范围为0到1。不透明度为1时，图层将完全不透明。
+| mapbox_pulsingLocationCircleRadius | 单个脉冲应扩大脉冲圈的最大半径。
+| mapbox_pulsingLocationCircleAlpha | 设置脉冲圈的不透明度，范围为0到1。不透明度为1时，图层将完全不透明。
 | mapbox_pulsingLocationCircleInterpolator | 设置脉冲圆的插值器动画。
 
 {{<Note>}}
 
 `mapbox_compassAnimationEnabled` and `mapbox_accuracyAnimationEnabled` options are available because smooth animation of the `LocationComponent` can have a significant impact on a device's battery level. Disabling smooth compass and accuracy animations during scenarios where it'd be the only animation running on the device can decrease CPU usage by a significant amount.
 
+`mapbox_compassAnimationEnabled`和 `mapbox_accuracyAnimationEnabled`选项是可用的，因为 `LocationComponent`的动画平滑会对设备的电池消耗水平产生重大影响。作为设备上唯一运行的动画的情况下，禁用罗盘和精度的动画平滑可以显著降低CPU的使用量。
+
 {{</Note>}}
 
 Adding a pulsing circle to the `LocationComponent` is another styling option. The pulsing circle expands its radius over a certain amount of time to make the `LocationComponent` look as if it's a beacon that is emitting energy. This UI can give the `LocationComponent` and your map an even more engaging and energetic feel as the device stays still or moves around the map.
+
+为`LocationComponent`添加一个脉冲圈是另一个样式选项。脉冲圈会在一定时间内扩大其半径，使`LocationComponent`看起来就像一个正在发射能量的信标。当设备在地图上静止或移动时，这个UI可以使`LocationComponent`和您的地图带更具吸引力和活力。
 
 {{
   <AndroidDeviceFrame
@@ -130,6 +134,8 @@ Adding a pulsing circle to the `LocationComponent` is another styling option. Th
 }}
 
 The pulsing circle is disabled by default. To show the default pulsing UI, pass `true` through the `LocationComponentOptions.builder()`'s `pulseEnabled()` method to enable the pulsing. The `LocationComponentOptions.builder()` has several methods (seen listed above) to customize the pulsing UI.
+
+脉冲圈在默认状态下是禁用的。如需显示默认的脉动UI，可以通过`LocationComponentOptions.builder()`的`pulseEnabled()`方法传递`true`来启用脉冲。`LocationComponentOptions.builder()`有几个方法（见上表列出）来定制脉冲用户界面。
 
 {{
 <AndroidActivityToggle
