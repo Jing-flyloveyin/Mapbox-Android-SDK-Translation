@@ -91,15 +91,15 @@ Use `LocationComponent` options to style the device location icon.
 <AppropriateImage imageId="maps-overview-location-component-active" className="block mx-auto pt18 wmax300" />
 }}
 
-| XML Option                      | Explanation                                                  |
+| XML Option                      | Explanation 描述                                                 |
 | ------------------------------- | ------------------------------------------------------------ |
-| mapbox_foregroundDrawable       | 运用可绘制的图像，取代蓝色圆圈。                                   |
+| mapbox_foregroundDrawable       | 可绘制的图像，将取代蓝色圆圈。                                   |
 | mapbox_foregroundTintColor      | 蓝色圆圈的颜色。                                    |
-| mapbox_backgroundDrawable       | 运用可绘制的图像，取代白色圆环。          |
+| mapbox_backgroundDrawable       | 可绘制的图像，将取代白色圆环。          |
 | mapbox_backgroundTintColor      | 白色圆环的颜色。                                            |
-| mapbox_bearingDrawable          | 运用可绘制的图像，取代蓝色三角。     |
+| mapbox_bearingDrawable          | 可绘制的图像，将取代蓝色三角。     |
 | mapbox_bearingTintColor         | 蓝色三角的颜色。                                          |
-| mapbox_navigationDrawable       | 运用可绘制的图像，代表导航状态的图标。          |
+| mapbox_navigationDrawable       | 可绘制的图像，代表导航状态的图标。          |
 | mapbox_accuracyAlpha            | 设备位置图标周围较大的浅蓝色圆圈。 |
 | mapbox_accuracyColor            | 设备位置图标周围较大的淡蓝色圆圈的颜色。 |
 | mapbox_elevation                | 地图和设备位置图标之间的空间大小。仰角将调整白色圆圈下阴影的大小。传递`0f`作为方法参数将移除阴影效果。|
@@ -182,21 +182,24 @@ locationComponent.activateLocationComponent(locationComponentActivationOptions)
 <AppropriateImage imageId="maps-overview-location-component-stale" className="block mx-auto pt18 wmax300" />
 }}
 
-| XML Option                      | Explanation                                                  |
+| XML Option                      | Explanation 描述                                                |
 | ------------------------------- | ------------------------------------------------------------ |
-| mapbox_foregroundDrawableStale  | Drawable image that would replace the grey circle's location. |
-| mapbox_foregroundStaleTintColor | The grey circle's color.                                     |
-| mapbox_backgroundDrawableStale  | Drawable image that would replace the white circle's location. |
-| mapbox_backgroundStaleTintColor | The white circle's color.                                    |
+| mapbox_foregroundDrawableStale  | Drawable image that would replace the grey circle's location.可绘制的图像，将取代灰圈的位置。 |
+| mapbox_foregroundStaleTintColor | The grey circle's color. 灰圈的颜色。                                     |
+| mapbox_backgroundDrawableStale  | Drawable image that would replace the white circle's location.绘制的图像，将取代白色圆环。 |
+| mapbox_backgroundStaleTintColor | The white circle's color. 白环的颜色。                                   |
 
-## Activating
+## Activating 激活
 
 `MapboxMap#getLocationComponent()` fetches the component and `LocationComponent#activateLocationComponent()` activates it.
+`MapboxMap#getLocationComponent()`获取组件，`LocationComponent#activateLocationComponent()`激活它。
 
 The `activateLocationComponent()` method requires a built `LocationComponentActivationOptions` class. The `LocationComponentActivationOptions` class offers a convenient way to set activation options such as whether to use the default `LocationEngine` or [a built `LocationComponentOptions` object](/android/maps/overview/location-component/#customization).
 
+使用`activateLocationComponent()`方法需要一个内置的`LocationComponentActivationOptions`类。`LocationComponentActivationOptions`类提供了一种方便的方式来设置激活选项，例如是否使用默认的`LocationEngine`或[内置的`LocationComponentOptions`对象](/android/maps/overview/location-component/#customization)。
 
 Create a `LocationComponentActivationOptions` class with the builder pattern that is provided to you via the Maps SDK.
+使用通过Maps SDK提供给您的构建器模式创建一个`LocationComponentActivationOptions`类。
 
 {{
 <AndroidActivityToggle
@@ -219,6 +222,7 @@ LocationComponentActivationOptions locationComponentActivationOptions = Location
 }}
 
 Retrieve and activate the `LocationComponent` once the user has granted location permission **and** the map has fully loaded.
+一旦用户授予位置权限**且**地图已完全加载，`LocationComponent`将被检索并激活。
 
 {{
 <AndroidActivityToggle
@@ -315,15 +319,19 @@ private fun enableLocationComponent() {
 {{
   <RelatedPage
     url="/android/maps/examples/show-a-users-location/"
-    title="Showing device location"
+    title="Showing device location 显示设备位置"
     contentType="example">
 }}
 Add the device's location to the map.
+在地图上添加设备位置的显示。
 {{</RelatedPage>}}
 
-## Visibility
+## Visibility 可见度
 
 There is a single method to either enable or disable the `LocationComponent`'s visibility after activation. The `setLocationComponentEnabled()` method requires a `true`/`false` boolean parameter. When set to `false`, this method will hide the device location icon and stop map camera animations from occurring.
+
+在激活后，有一种方法来启用或禁用`LocationComponent`的可见性。`setLocationComponentEnabled()`方法需要一个`true`/`false`布尔参数。当设置为 `false`时，该方法将隐藏设备位置图标，并停止地图相机动画的应用。
+
 
 {{
 <AndroidActivityToggle
@@ -340,6 +348,7 @@ locationComponent.isLocationComponentEnabled = true
 ## `RenderMode`
 
 The `RenderMode` class contains preset options for the device location image.
+`RenderMode`类包含设备位置图像的预设选项。
 
 {{
 <AndroidActivityToggle
@@ -355,20 +364,24 @@ locationComponent?.renderMode = RenderMode.NORMAL
 
 There are three types of `RenderMode` options:
 
-| `RenderMode` | Description                                                  |
+| `RenderMode` | 描述                                                  |
 | ------------ | ------------------------------------------------------------ |
-| `NORMAL`     | This mode shows the device location, ignoring both compass and GPS bearing (no arrow rendered). {{<AppropriateImage imageId="maps-overview-location-component-normal-render" className="block mx-auto pt18" />}} |
-| `COMPASS`    | This mode shows the device location, as well as an arrow that is considering the compass of the device. {{<AppropriateImage imageId="maps-overview-location-component-compass-render" className="block mx-auto pt18" />}} |
-| `GPS`        | This mode shows the device location with the icon bearing updated from the `Location` updates being provided to the `LocationComponent`. {{<AppropriateImage imageId="maps-overview-location-component-gps-render" className="block mx-auto pt18" />}} |
+| `NORMAL`     | 该模式显示设备位置，忽略指南针和GPS方位（无箭头呈现）。{{<AppropriateImage imageId="maps-overview-location-component-normal-render" className="block mx-auto pt18" />}} |
+| `COMPASS`    | 这种模式可以显示设备的位置，以及考虑设备方位的指南针箭头。{{<AppropriateImage imageId="maps-overview-location-component-compass-render" className="block mx-auto pt18" />}} |
+| `GPS`        | 该模式显示了设备的位置，并使用提供给 `LocationComponent`的 `Location`更新中被更新了的图标。 {{<AppropriateImage imageId="maps-overview-location-component-gps-render" className="block mx-auto pt18" />}} |
 
-{{<Note>}}
+{{<Note 小贴士>}}
 The actual device location icon is highly customizable with methods such as `LocationComponentOptions#foregroundDrawable()` and `LocationComponentOptions#backgroundDrawable()`.
-{{</Note>}}
+
+通过`LocationComponentOptions#foregroundDrawable()`和`LocationComponentOptions#backgroundDrawable()`等方法，您可以高度自定义实际的设备位置图标。
+{{</Note 小帖士>}}
 
 
 ## `CameraMode`
 
 The method `LocationComponent#setCameraMode(@CameraMode.Mode int cameraMode)` allows developers to set specific camera tracking instructions as the device location changes.
+
+使用`LocationComponent#setCameraMode(@CameraMode.Mode int cameraMode)`方法允许开发者在设备位置变化时设置特定的camera追踪指令。
 
 {{
 <AndroidActivityToggle
@@ -383,19 +396,22 @@ locationComponent?.cameraMode = CameraMode.TRACKING
 }}
 
 There are 7 `CameraMode` options available:
+共有7种 `CameraMode`可供选择。
 
-| `CameraMode`         | Description                                                  |
+
+| `CameraMode`         | 描述                                                 |
 | -------------------- | ------------------------------------------------------------ |
-| `NONE`               | No camera tracking.                                          |
-| `NONE_COMPASS`       | Camera does not track location, but does track compass bearing. |
-| `NONE_GPS`           | Camera does not track location, but does track GPS `Location` bearing. |
-| `TRACKING`           | Camera tracks the device location, no bearing is considered. |
-| `TRACKING_COMPASS`   | Camera tracks the device location, tracking bearing provided by the device compass. |
-| `TRACKING_GPS`       | Camera tracks the device location, with bearing provided by a normalized `Location#getBearing()`. |
-| `TRACKING_GPS_NORTH` | Camera tracks the device location, with bearing always set to north (0). |
+| `NONE`               | 无camera追踪。                                          |
+| `NONE_COMPASS`       | Camera不追踪位置，但可以追踪罗盘方位。 |
+| `NONE_GPS`           | Camera不追踪位置，但会跟踪GPS`Location`方位。 |
+| `TRACKING`           | Camera追踪设备位置，不考虑方位。 |
+| `TRACKING_COMPASS`   | Camera追踪设备位置，同时追踪设备罗盘提供的方位。 |
+| `TRACKING_GPS`       | Camera追踪设备位置，方位则由归一化的`Location#getBearing()`提供。|
+| `TRACKING_GPS_NORTH` | Camera追踪设备位置，方位始终设置为北（0）。 |
 
 
 Here are a few examples from [the `LocationModesActivity` in the Maps SDK's test application](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDKTestApp/src/main/java/com/mapbox/mapboxsdk/testapp/activity/location/LocationModesActivity.java):
+以下是[地图SDK测试应用程序中的`LocationModesActivity`](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDKTestApp/src/main/java/com/mapbox/mapboxsdk/testapp/activity/location/LocationModesActivity.java)中的几个例子：
 
 **CameraMode.NORMAL**
 
@@ -430,18 +446,32 @@ Here are a few examples from [the `LocationModesActivity` in the Maps SDK's test
 
 Traditional camera transitions will be canceled when any of the camera modes, besides `CameraMode#NONE`, are engaged. Use `LocationComponent#zoomWhileTracking` and `LocationComponent#tiltWhileTracking` to manipulate the camera in a tracking state. Use these two in combination with traditional camera transitions and `MapboxMap#CancelableCallback` to schedule fluid transitions.
 
+当除了`CameraMode#NONE`之外的任何一种camera模式被激活时，传统的camera转换将被取消。使用`LocationComponent#zoomWhileTracking`和`LocationComponent#tiltWhileTracking`来操作处于追踪状态的camera。将这两个功能与传统的camera转换和`MapboxMap#CancelableCallback`结合使用，可以实现流畅的转换。
+
 When instantiating the `LocationComponent` for the first time, the map's max/min zoom levels will be set to`LocationComponentOptions#MAX_ZOOM_DEFAULT` and `LocationComponentOptions#MIN_ZOOM_DEFAULT` respectively. Adjust the zoom range with the `LocationComponentOptions#maxZoom()` and `LocationComponentOptions#minZoom()` methods in the `LocationComponentOptions` class.
 
-## Gesture thresholds while camera tracking
+当首次实例化`LocationComponent`时，地图的最大/最小缩放级别将分别设置为`LocationComponentOptions#MAX_ZOOM_DEFAULT`和`LocationComponentOptions#MIN_ZOOM_DEFAULT`。通过`LocationComponentOptions`类中的`LocationComponentOptions#maxZoom()`和`LocationComponentOptions#minZoom()`方法，可以调整缩放范围。
+
+## Gesture thresholds while camera tracking camera追踪时的手势阈值
 
 The `LocationComponent` is integrated with [the Mapbox Gestures for Android library](https://docs.mapbox.com/android/maps/overview/gestures/). The component will adjust the camera's focal point and increase thresholds to enable camera manipulation, like zooming in and out, without breaking tracking. Enabling this feature is explicitly opt-in because it overwrites custom gestures detection implementation set with `MapboxMap#setGesturesManager(AndroidGesturesManager, boolean, boolean)`.
 
+`LocationComponent`已实现与[Mapbox Gestures for Android库](https://docs.mapbox.com/android/maps/overview/gestures/)的集成。该组件将调整camera的焦点并增加阈值，以实现camera操作，如放大和缩小，而不破坏追踪。启用这个功能需要清晰的主动选择，因为它将覆盖用`MapboxMap#setGesturesManager(AndroidGesturesManager, boolean, boolean)`设置的自定义手势检测实现。
+
 To enable the feature use `LocationComponentOptions#trackingGesturesManagement(boolean)`.
+要启用该功能，请使用`LocationComponentOptions#trackingGesturesManagement(boolean)`。
 
 You can adjust thresholds that need to be exceeded to break the tracking for one pointer gestures (like panning the map, double-tap to zoom in) and multi-pointer gestures (like scale gesture, two-tap to zoom out):
 - `LocationComponentOptions#trackingInitialMoveThreshold(float)` adjusts the minimum single pointer movement in pixels required to break camera tracking.
 - `LocationComponentOptions#trackingMultiFingerMoveThreshold(float)` adjusts minimum multi pointer movement in pixels required to break camera tracking (for example during scale gesture).
 - If either of these thresholds are exceeded and tracking is dismissed, developers can listen to this with a `OnCameraTrackingChangedListener`:
+
+针对单指针手势（如平移地图，双击放大）和多指针手势（如缩放手势，双击放大），您可以调整打破追踪所需要超过的阈值。
+- `LocationComponentOptions#trackingInitialMoveThreshold(float)`可调整打破camera追踪所需的最小单指针移动像素。
+- `LocationComponentOptions#trackingMultiFingerMoveThreshold(float)`可调整打破camera追踪所需的最小多指针像素移动量（例如在缩放手势期间）。
+- 如果超过其中任何一个阈值，追踪就会被驳回，开发者可以使用`OnCameraTrackingChangedListener`来监听。
+
+
 
 {{
 <AndroidActivityToggle
