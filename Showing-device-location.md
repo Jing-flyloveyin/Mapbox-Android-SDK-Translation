@@ -1,6 +1,6 @@
 ---
-title: "Showing device location"
-description: "Showing device location with the Mapbox Maps SDK for Android."
+title: "显示设备位置"
+description: "使用 Mapbox Maps SDK for Android显示设备位置."
 prependJs:
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
   - "import AppropriateImage from '../../../components/appropriate-image';"
@@ -19,11 +19,11 @@ Showing the user's current location as a map annotation is a popular and often c
 将用户的当前位置显示为地图标注是基于位置的应用程序一个高频使用的关键功能。Maps SDK的`LocationComponent`利用Maps SDK的[运行时样式功能](/android/maps/overview/data-driven-styling/)在地图本身中显示设备位置图标，而不是作为Android视图显示在顶部。Mapbox地图图层和图层样式让您可以对在地图上显示设备的位置进行进行精确控制。
 
 
-{{<Note 小贴士>}}
+{{<小贴士>}}
 This `LocationComponent` has replaced the now-deprecated Location Layer Plugin. The `LocationComponent` is integrated into the Maps SDK for Android so that you don't need to add any additional dependencies. It brings the same set of functionality that you were used to with the plugin.
 
 `LocationComponent`目前已经取代了已废弃的Location Layer Plugin。`LocationComponent`已被集成到Android地图SDK中，因此您无需添加任何额外的依赖关系。它带来了与插件相同的功能集。
-{{</Note 小贴士>}}
+{{</小贴士>}}
 
 ## Requesting location permissions 请求位置权限
 
