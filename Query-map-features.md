@@ -12,12 +12,12 @@ language:
 
 The Maps SDK allows you to query map layers and return a list of [GeoJSON `Feature`s](/android/java/overview/geojson/#feature-and-featurecollection) that include information about the `Feature`'s geometry and properties. For example, a user can query map features by tapping the map and return any POIs that exist at that point as a GeoJSON `Feature`. Then, you can access the properties in the feature, including the POI's name as a `String`. Querying the map won't always return the information that you are looking for. It is possible to receive a `List<Feature>` with 0 features in it.
 
-Maps SDK 为您提供查询地图层的工具以获取[GeoJSON`要素`](/android/java/overview/geojson/#feature-and-featurecollection)的列表，保存着`要素`的位置与属性信息。其中一个示例用法是，用户可以通过点击地图上的位置，查询显示地图上以GeoJSON`要素`形式存储的POI。随后可获得相关要素的属性信息，包括以String格式储存的 POI 名称等。需要注意的是，由于地图查询操作并不总是能够返回用户查找的信息，因此可能收到包含0 个要素的`要素列表`。
+Maps SDK 为您提供查询地图层的工具以获取[GeoJSON`要素`](/android/java/overview/geojson/#feature-and-featurecollection)的列表，保存着`要素`的位置与属性信息。其中一个示例用法是，用户可以通过点击地图上的位置，查询显示地图上以GeoJSON`要素`形式存储的POI。随后可获得相关要素的属性信息，包括以`String`格式储存的 POI 名称等。需要注意的是，由于地图查询操作并不总是能够查询返回用户查找的信息，因此可能收到包含0 个要素的`要素列表`。
 
 ## How querying works 地图查询方法
 
 You can query the map for features that exist at a `Point` or within a `BoundingBox`. Aside from layers, it is also possible to query the source for specific information matching your query regardless if the items are being displayed on the map.
-您可以在地图上查询位于某一`点`或 特定`边界框 `内的要素。除显示的图层外，无论被查询的数据是否实际显示在地图上，您都可以根据自身需求对其执行查询操作。
+您可以在地图上查询位于某一`点`或特定`边界框 `内的要素。除显示的图层外，无论被查询的数据是否实际显示在地图上，您都可以根据自身需求对其执行查询操作。
 
 
 Because features come from vector tile (or GeoJSON data that is converted to tiles internally), the query may split feature geometries or duplicate them across tile boundaries. As a result, features may appear multiple times in query results.
@@ -30,14 +30,14 @@ For example, when querying by bounding box in an area that includes a highway sp
 
 Use `queryRenderedFeatures` to return all map features currently rendered on the device. Features must be visible in the device's viewport **and** fully rendered before you can access them.
 
-使用`查询渲染的要素`功能可以返回当前设备上渲染的所有地图要素。查询需要满足的条件包括，要素必须在设备的视区中可见，**以及**在完全渲染后才能够被访问查询。
+使用`查询渲染的要素`功能可以返回当前设备上渲染的所有地图要素。查询需要满足的条件，包括要素必须在设备的视区中可见，**以及**在实现完全渲染后才能够被访问查询。
 
 
-### Query at a point
+### Query at a point 基于位置点的查询
 
 `queryRenderedFeatures` only accepts a screen pixel value instead of `LatLng`, so in many cases you'll need convert screen position to geographic position. In the example below, when the map is clicked it provides a `LatLng` that is used to get the features at that point on the map.
 
-查询地图只接受屏幕像素值而不是 `LatLng`。因此可能时常需要对`LatLng`事先进行转换。在以下代码段中，单击地图将提供一个`LatLng`数值，我们将其用来查询地图并获取该位置的属性。
+`查询渲染的要素`仅能接受使用屏幕像素值，而不是 `LatLng`值。因此在实际操作过程中，可能时常需要对`LatLng`事先进行转换。在以下代码段中，单击地图将提供一个`LatLng`数值，我们将其用来查询地图并获取该位置的属性。
 
 {{
 <AndroidActivityToggle
@@ -135,7 +135,7 @@ val features = mapboxMap.queryRenderedFeatures(pixel,"LAYER-ID")
 Query the rendered map to get the properties at a specific location.
 {{</RelatedPage>}}
 
-### Query inside a bounding box 查询边界框内的要素
+### Query inside a bounding box 基于边界框内的查询
 
 To query the map for `Feature`s in an area, pass in a bounding box using a `RectF` object. This can either come from a Android `View` displayed to the user on top of the map or four coordinates that are shown within the viewport.
 
