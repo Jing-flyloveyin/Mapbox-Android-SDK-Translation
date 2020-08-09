@@ -31,7 +31,6 @@ You'll need to request the Android-system location permission before using the `
 
 在使用`LocationComponent`之前，您需要请求Android系统的位置权限。如果您构建的Android项目的目标是API级别23或更高，您的应用程序将需要在运行时请求权限。若您在活动中直接处理这个问题会产生模板代码，并且通常很难管理。[阅读更多关于使用Mapbox Core Library for Android的`PermissionsManager`](/android/core/overview/#permissionsmanager)类。
 
-
 ## Customization 定制化
 
 The `LocationComponent` can be customized in many different ways. You can set the image drawables, opacities, colors, and more. [See a full list of XML attributes for styling the `LocationComponent` via XML](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/res-public/values/public.xml#L109-L152). [The `LocationComponentOptions` class](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java) can be used if you prefer to customize the `LocationComponent` programatically. Create a [LocationComponentOptions](https://github.com/mapbox/mapbox-gl-native-android/blob/master/MapboxGLAndroidSDK/src/main/java/com/mapbox/mapboxsdk/location/LocationComponentOptions.java) object and then use whichever `LocationComponentOptions.builder()`'s various methods you'd like. Then use the built `LocationComponentOptions` object as parameter in `LocationComponentActivationOptions#locationComponentOptions()` or by passing it through as a parameter of the `LocationComponent#applyStyle()` method at a later time.
