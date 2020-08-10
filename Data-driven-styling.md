@@ -1135,4 +1135,4 @@ mapboxMap.getStyle {
 
 图层不可单击，并且不会公开任何事件侦听器来处理用户输入。 而是，地图查询工具可以帮助您检测用户何时与地图进行了交互。 例如，当点击FillLayer的多边形时。
 
-另外，您可以使用[Mapbox注释插件](/android/plugins/overview/annotation/#manager)，该插件提供onClick（）和onLongClick（）侦听。
+另外，您可以使用[Mapbox Annotation Plugin](/android/plugins/overview/annotation/#manager)，该插件提供onClick（）和onLongClick（）侦听。
