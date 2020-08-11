@@ -1,6 +1,6 @@
 ---
 title: "Data clustering"
-description: "Learn how to use the Mapbox Maps SDK for Android to show clustered data on the map."
+description: "了解如何使用Mapbox Maps SDK for Android在地图上显示集群数据。"
 prependJs:
   - "import AndroidDeviceFrame from '../../../components/android-device-frame'"
   - "import RelatedPage from '@mapbox/dr-ui/related-page';"
@@ -11,16 +11,16 @@ language:
 - Kotlin
 ---
 
-Often, a map can show too much data at a single time. Markers overlap with each other. The map looks and feels cluttered. Users can't get a quick understanding of what the data is supposed to say.
+通常如果一张地图上显示的数据过多，标记会相互重叠，地图看起来会感觉很杂乱，用户将无法快速理解数据的含义。
 
-Showing clustered data is entirely possible by using the data-driven styling capabilities of the Mapbox Maps SDK for Android.
+通过使用Mapbox Maps SDK for Android的数据驱动样式功能，显示集群数据是完全可能的。
 
-Adjusting the amount of data shown on the map to the map's camera zoom level, is a way to provide users with a cleaner UI experience and less overwhelming location data experience.
+将地图上显示的数据量调整到地图的相机变焦水平，是为用户提供更简洁的UI和位置数据体验的一种方式。
 
 
 ## CircleLayer
 
-Using `CircleLayer`s is one way of two recommended ways to show data clustering. Different circle colors can represent the various data ranges. For example, blue circles might be clusters with 100+ data points, red circles with 50+, and green circles with 10+. Once the map is zoomed in enough, only individual data points would be visible.
+对于显示集群数据，我们有两种推荐的方法，其中使用`CircleLayer`是其中一种。不同的圆圈颜色可以代表不同的数据范围。例如，蓝色圆圈可以是一百以上个点的集合，红色圆圈是五十个以上，绿色是十个以上。一旦地图被放大到足够大的程度，就只能看到单个的数据点。
 
 
 {{
@@ -37,12 +37,12 @@ Using `CircleLayer`s is one way of two recommended ways to show data clustering.
     title="CircleLayer clustering"
     contentType="example">
 }}
-Use GeoJSON data and layers to show data with circle clusters.
+使用GeoJSON数据和图层来用圆圈集群显示数据。
 {{</RelatedPage>}}
 
 ## SymbolLayer
 
-The `SymbolLayer` is a bit more complicated but essentially the same as the `CircleLayer` implementation above. Depending on the shape/size of the `SymbolLayer` icons that you use, you might have to use the`PropertyFactory`'s `iconTranslate` method to make sure that the data count `SymbolLayer` number text is lined up directly on top of the `SymbolLayer` cluster icons. Different icons could represent the various data ranges. For example, one image could be clusters with 100+ data points, a second image with 50+, and third image with 10+. Once the map is zoomed in enough, only individual data points would be visible
+`SymbolLayer`稍微复杂一点，但本质上与上面的`CircleLayer`实现相同。根据你使用的`SymbolLayer`图标的形状/大小，您可能需要使用`PropertyFactory`的 `iconTranslate` 方法来确定数据计数 `SymbolLayer` 数字文本在`SymbolLayer` 集群图标上对齐。不同的图标也可以代表不同的数据范围。例如，第一个图标可以是一百以上个点的集合，第二个图标是五十个以上，第三个是十个以上。一旦地图被放大到足够大的程度，就只能看到单个的数据点。
 
 {{
   <RelatedPage
@@ -50,7 +50,7 @@ The `SymbolLayer` is a bit more complicated but essentially the same as the `Cir
     title="SymbolLayer clustering"
     contentType="example">
 }}
-Use GeoJSON data and layers to show data with various images as the cluster icons.
+使用GeoJSON数据和图层，用各种图像把数据显示为集群图标。
 {{</RelatedPage>}}
 
 {{
@@ -61,9 +61,9 @@ Use GeoJSON data and layers to show data with various images as the cluster icon
 />
 }}
 
-To do this:
+步骤：
 
-1. Use a GeoJSON data source and add it to the Mapbox map as a `GeoJsonSource`.
+1. 使用GeoJSON数据源，并将其作为一个`GeoJsonSource`添加到Mapbox 地图中。
 
 	{{
 <AndroidActivityToggle
@@ -109,9 +109,9 @@ mapboxMap.getStyle {
 }}
 
 
-2. Create a `SymbolLayer` with icons that represent the individual data points for when points are not clustered. These icons will only be visible when the map's camera is close enough to the map. Remember, the higher the map zoom value, the more zoomed in the camera is. A zoom level of 12 is closer to the map than a zoom value of 4.
-3. Create as many additional `SymbolLayer`s or `CircleLayer`s as you want for the various data ranges. You might have red circles represent data clusters that have 10-30 data points and then blue circles that have 50 or more data points. Data-driven styling and `Expression` filtering will determine which cluster layers are shown at which zoom level.
-4. Create a `SymbolLayer` for the hidden data amount text. That is, the number that appears and tells a user how many more data points are "hidden" behind the cluster icon/circle and can be viewed if the map is zoomed in on. Don't forget to use runtime styling to adjust the text size, text color, and other text properties:
+2. 创建一个`SymbolLayer` ，放置点不聚集时代表单个数据点的图标。只有当地图的相机离地图足够近时，这些图标才会显示出来。记住，地图缩放值越高，相机的放大程度就越高。和等级4相比，等级12时相机离地图更近。
+3. 创建尽可能多的`SymbolLayer`或`CircleLayer`用于不同的数据范围。你可以设定，红色的圆圈表示有10-30个数据点的数据集群，蓝色的圆圈表示有50个或更多的数据点的数据集群。数据驱动的样式和`Expression`筛选器将决定在哪个缩放级别显示哪个集群层。
+4. 为隐藏的数据数量文本创建一个`SymbolLayer`。也就是说，图标/圆圈上出现的数字会告诉用户这个图标/圆圈后面“隐藏”了多少数据点，如果地图被放大，就可以看到这些数据点。不要忘记可以使用运行样式去调整文本的大小、颜色以及其他属性。
 
 {{
 <AndroidActivityToggle
