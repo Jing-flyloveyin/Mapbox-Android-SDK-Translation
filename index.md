@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-description: "The official overview documentation for the Mapbox Maps SDK for Android. Learn how to customize your Android app's maps, visualize data, and much more."
+description: "Mapbox Maps SDK for Android 官方文档，帮助您了解如何自定义 Android 应用程序的地图，可视化数据等等。"
 prependJs:
   - "import OverviewHeader from '@mapbox/dr-ui/overview-header';"
   - "import Note from '@mapbox/dr-ui/note';"
