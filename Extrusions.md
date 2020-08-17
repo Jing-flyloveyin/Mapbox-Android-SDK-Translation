@@ -1,29 +1,29 @@
 ---
-title: "Extrusions"
-description: "Learn how to add and customize 3D shapes on your map using the Mapbox Maps SDK for Android."
-prependJs:
+标题: "挤塑"
+描述: "了解如何使用Android版Mapbox Maps SDK在地图上添加和自定义3D形状"
+前置:
   - "import AndroidActivityToggle from '../../../components/context-dependent/android-activity-toggle';"
   - "import Note from '@mapbox/dr-ui/note';"
   - "import RelatedPage from '@mapbox/dr-ui/related-page';"
-contentType: guide
-language:
+内容类型: 指南
+语言:
 - Java
 - Kotlin
 ---
 
-The Mapbox Style Specification uses the term *extrusion* to refer to a 3D shape displayed on a map. Extrusions are often seen on the map in the form of buildings, but any type of `Polygon` shape can be extruded. The shape of a building extrusion follows the building footprint shape as if the 2D `Polygon` has been stretched vertically, a specified distance in meters, from the map's surface.
+Mapbox样式规范使用术语*挤塑*来表示地图上显示的三维形状。挤塑模型经常以建筑的形式出现在地图上，但是任何类型的`多边形`形状都可以挤塑。建筑的挤塑形状遵循建筑物底部形状，就像二维`多边形`从地表垂直拉伸出指定的高度（以米为单位）。
 
-Like many other visual aspects of a Mapbox map, extrusions can be styled at run time and based on the values of data fields in the source data.
+与Mapbox地图的其他视觉方面一样，可以在运行时根据源数据中数据字段的值来设置拉伸样式。
 
-Adding and styling an extrusion is done via the Maps SDK for Android's `FillExtrusionLayer`. The `FillExtrusionLayer` is initialized with a unique ID and a unique or shared source ID, similar to other Maps SDK layers. Then define the `FillExtrusionLayer` layer's properties before adding the layer to the map's `Style` object.
+可以通过Android版的`FillExtrusionLayer`Maps SDK添加和设置拉伸样式。与其他Maps SDK图层类似，`FillExtrusionLayer`使用唯一的ID和唯一或共享的源ID进行初始化。然后定义`FillExtrusionLayer`图层的属性，再将该图层添加到地图的`Style`对象。
 
-## Styling
+##样式
 
-The Maps SDK for Android extrusion styling options follow [the official Mapbox Style Specification](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill-extrusion).
+Android版Maps SDK拉伸样式选项遵循[官方Mapbox样式规范](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill-extrusion)。
 
-Please read the Style Specification properties to learn more about extrusion colors, opacity, pattern, coordinate offsetting, and more.
-
-[The Mapbox Android demo app's extrusions-related examples](/android/maps/examples/#extrusions) show what's possible for styling extrusions.
+请阅读样式规范属性，以了解有关拉伸颜色、不透明度、图案、坐标偏移等的更多信息。
+ 
+[Mapbox Android演示应用程序的与拉伸有关的示例](/android/maps/examples/#extrusions)展示了对拉伸进行样式设置的可行性。
 
 {{
 <AndroidActivityToggle
@@ -60,11 +60,11 @@ mapboxMap.getStyle {
 />
 }}
 
-## Light
+##光
 
-Part of the Mapbox Style Specification is the concept of _light_. You can adjust the color, intensity, and angle at which light hits the map, as if you were adjusting the location of the sun.
+Mapbox样式规范的一部分是_光_的概念。您可以调整光线照射到地图上的颜色、强度和角度，就像调整太阳的位置一样。
 
-A style's light property provides a _global_ light source for that entire style. Because these properties are applied across all layers, `light` is a [root property](https://docs.mapbox.com/mapbox-gl-js/style-spec/root/#light) in the Style Specification rather than a paint or layout property to be defined in a single [fill-extrusion layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill-extrusion).
+样式的light属性为整个样式提供_球形_光源。因为这些属性应用于所有图层，所以`光`是样式规范中的[根属性](https://docs.mapbox.com/mapbox-gl-js/style-spec/root/#light),而不是在单个[填充-挤塑层](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#fill-extrusion)中定义的绘画或布局属性。
 
 
 {{<Note>}}
@@ -82,13 +82,13 @@ Consider using Mapbox Studio to iterate on a map style's light options. Working 
 Adjust the light's location and color to see how it affects the extrusion.
 {{</RelatedPage>}}
 
-## Tricks
+##技巧
 
-Extrusion styling is enhanced by the Maps SDK's [expressions](/android/maps/overview/expressions/) and [data-driven styling](/android/maps/overview/data-driven-styling/). Their combination can lead to fun effects and achieving the specific data visualization to match your use case.
+通过Maps SDK的[表达式](/android/maps/overview/expressions/)和[数据驱动的样式](/android/maps/overview/data-driven-styling/)可以增强挤塑样式。它们的组合可以带来有趣的效果，并实现特定的数据可视化以匹配您的用例。
 
-### Relative heights
+###相对高度
 
-If you're using extrusions as a data visualization strategy for data that's not related to the physical height of objects in space (for example, visualizing the population in census block groups), the value of the data field might not be appropriate as an extrusion height (in meters). To make the extrusions visible at various zoom levels you can use Maps SDK expressions to make all the extrusions appear much taller on the map **and** keep their relative height differences the same. This way, the extrusions can be visible at a much lower zoom level when the map camera is farther away from the map surface.
+如果将挤塑模型作为与空间对象物理高度无关的数据实行数据可视化策略（例如，可视化人口普查块组中的种群），则数据字段的值可能不适合作为拉伸高度（以米为单位）。要使突出显示在各种缩放级别下可见，您可以使用Maps SDK表达式使所有突出显示在地图上的高度更高，*并且*保持它们的相对高度差相同。 这样，当地图相机距离地图表面较远时，可以在低得多的缩放级别上看到突出部分。
 
 `fillExtrusionHeight(sum(literal(CONSTANT_NUMBER), get("HEIGHT_FEATURE_PROPERTY_KEY")))));` is the key to this effect.
 
@@ -138,9 +138,9 @@ mapboxMap.getStyle {
 Set extrusion height based on a dataset.
 {{</RelatedPage>}}
 
-### Base vs. height
+###基础与高度
 
-Adjusting the difference between `fillExtrusionBase` and `fillExtrusionHeight` leads to interesting visual effects as well. If the difference is a small amount such as 3 meters, the visual effect will be a small sliver of an extrusion that appears to be floating in the air. This can be a nice yet rudimentary way to visualize flight data or other data that is not connected to the flat surface of the map.
+调整`fillExtrusionBase`和`fillExtrusionHeight`之间的差异也会产生有趣的视觉效果。如果差异很小，例如3米，则视觉效果将是看起来像漂浮在空中的一小部分挤塑模型。这是可视化飞行数据或未连接到地图平坦表面的其他数据的一种不错的基本方法。
 
 {{
 <AndroidActivityToggle
