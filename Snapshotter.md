@@ -21,11 +21,11 @@ language:
 
 使用快照功能时不需要显示Mapbox地图。`MapSnapshotter`可以在应用程序的任何地方调用。
 
-除非您已经缓存了地图瓦片，否则设备 _将_ 需要网络连接来下载渲染地图和快照所需的样式的地图瓦片。
+除非您已经缓存了地图切片，否则设备 _将_ 需要网络连接来下载渲染地图和快照所需的样式的地图切片。
 
 快照的获取可以在设备的后台线程中进行，不会影响用户体验。
 
-快照功能不同于[Mapbox静态图像API](/android/java/overview/static-image)。[类`MapboxStaticMap`](https://github.com/mapbox/mapbox-java/blob/afe9e88c9a09a413405571678d17499aa0a5f25c/services-staticmap/src/main/java/com/mapbox/api/staticmap/v1/MapboxStaticMap.java)帮助您构建一个URL来请求静态地图图像，请求获得的图像会看起来像一个没有交互性或控制的嵌入式地图。
+快照功能不同于[Mapbox静态图像API](/android/java/overview/static-image)。[`MapboxStaticMap`类](https://github.com/mapbox/mapbox-java/blob/afe9e88c9a09a413405571678d17499aa0a5f25c/services-staticmap/src/main/java/com/mapbox/api/staticmap/v1/MapboxStaticMap.java)帮助您构建一个URL来请求静态地图图像，请求获得的图像会看起来像一个没有交互性或控制能力的嵌入式地图。
 
 ## 获取地图快照
 
